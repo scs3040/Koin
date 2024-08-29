@@ -1,0 +1,576 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:h="http://www.w3.org/TR/REC-html40">
+<Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+    <Alignment ss:Vertical="Top"/><Borders/>
+    <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size ="11" ss:Color ="#000000"/>
+    <Interior/>
+    <NumberFormat/>
+    <Protection/>
+  </Style>
+  <Style ss:ID="wrap">
+    <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+  </Style>
+</Styles>
+<Worksheet ss:Name="page 1">
+<Table>
+  <Column ss:AutoFitWidth="0" ss:Width="86"/>
+  <Column ss:AutoFitWidth="0" ss:Width="132"/>
+  <Column ss:AutoFitWidth="0" ss:Width="135"/>
+  <Column ss:AutoFitWidth="0" ss:Width="76"/>
+  <Column ss:AutoFitWidth="0" ss:Width="92"/>
+  <Column ss:AutoFitWidth="0" ss:Width="94"/>
+  <Column ss:AutoFitWidth="0" ss:Width="96"/>
+  <Column ss:AutoFitWidth="0" ss:Width="57"/>
+  <Column ss:AutoFitWidth="0" ss:Width="60"/>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="15">Evaluation Only. Created with Aspose.PDF. Copyright 2002-2024 Aspose Pty Ltd.</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="8">결</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="8">협 의</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="8">입 안</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="8">심 사</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="8">결 정</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="13"><h:U>자재(품목)청구서</h:U></h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="8">재</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">오더번호 : 1870755</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">통합환경인허가 관련 조액 Pre-NL REACTOR 개</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">문서유형 : </h:Font><h:Font h:Size="7">WH</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">공사 작업오더</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">용</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">도 : </h:Font><h:Font h:Size="7">투자</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">오더유형 : </h:Font><h:Font h:Size="7">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">투자공사</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">원가부문 : </h:Font><h:Font h:Size="7">26048</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">환경경영II</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">사 업 장 :</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">160</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">재고 BP</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">자재 메인창고</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">청구부서 : </h:Font><h:Font h:Size="7">20310</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">정비1팀</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">청구담당 :</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">215015</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">오은식</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">공사번호 : </h:Font><h:Font h:Size="7">2024-0150-30-01</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">통합환경인허가 관련 조액 Pre-NL REACTOR 개선 공사</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">설비번호 :</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">품번</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">품명</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">규격및재질</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">단위</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">청구수량</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">불출수량</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">미불출수량</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">구매의뢰번호</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">통합코드</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-001-12-0160</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">PLATE</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L 4T*5´*10´</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Each</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">6</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">6</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-1000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-001-11-0280</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-021-04-0050</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">FLAT BAR</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L 50*6T</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Meters</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">36</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">36</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-2000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-021-04-0160</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-015-04-0040</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">ANGLE</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L 50*50*6T</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Meters</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">24</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">24</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-3000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-015-04-0100</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-001-12-0140</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">PLATE</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L 4T*4´*8´</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Each</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">1</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">1</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-4000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-001-12-0127</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-006-16-0110</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">FLANGE</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS304 FF 150A*10K</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Each</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">1</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">1</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-5000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-006-13-0110</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-009-22-0080</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">BLIND FLANGE</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L FF 150A*10K</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Each</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">1</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">1</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-6000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-009-23-0090</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-012-01-0260</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">H BEAM</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SS41 390*300*10*19</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Meters</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">20</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">20</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-7000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-012-01-0380</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-012-01-0150</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">H BEAM</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SS41 294*200*8*12</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Meters</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">10</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">10</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-8000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-012-01-0240</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-002-02-0040</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">PLATE</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS304 6T*4´*8´ CHECKERED</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Each</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">10</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">10</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-9000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">null data</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-001-17-0040</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">PIPE</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS304 S/20 25A</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Meters</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">10</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">10</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-10000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-001-26-0060</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-004-27-0040</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">ELBOW</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS304 S/20 25A*90도</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Each</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">96</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">96</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-11000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-004-16-0040</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-021-03-0197</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">FLAT BAR</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS304 150*6T</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Meters</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">24</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">24</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-12000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">null data</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-014-02-0020</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">CHANNEL</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS304 100*50*6T</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Meters</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">18</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">18</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-13000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-014-02-0105</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-006-41-0090</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">FLANGE</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L FF 100A*10K</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Each</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">6</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">6</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-14000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-006-41-0100</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-009-22-0060</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">BLIND FLANGE</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L FF 100A*10K</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Each</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">1</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">1</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-15000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-009-23-0080</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-009-22-0120</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">BLIND FLANGE</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L FF 350A*10K</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Each</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">2</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">2</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-16000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-009-23-0190</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-001-38-0090</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">PIPE</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L S/40 100A</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Meters</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">6</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">6</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-17000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-001-46-0110</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-004-48-0090</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">ELBOW</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L S/40 100A*90도</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Each</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">1</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">1</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-18000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-004-31-0100</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">OZ553111 ESOH</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">2024-08-06 05시17분04초 오후</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">1/2</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+</Table>
+</Worksheet>
+<Worksheet ss:Name="page 2">
+<Table>
+  <Column ss:AutoFitWidth="0" ss:Width="60"/>
+  <Column ss:AutoFitWidth="0" ss:Width="132"/>
+  <Column ss:AutoFitWidth="0" ss:Width="81"/>
+  <Column ss:AutoFitWidth="0" ss:Width="135"/>
+  <Column ss:AutoFitWidth="0" ss:Width="76"/>
+  <Column ss:AutoFitWidth="0" ss:Width="46"/>
+  <Column ss:AutoFitWidth="0" ss:Width="62"/>
+  <Column ss:AutoFitWidth="0" ss:Width="55"/>
+  <Column ss:AutoFitWidth="0" ss:Width="46"/>
+  <Column ss:AutoFitWidth="0" ss:Width="47"/>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="15">Evaluation Only. Created with Aspose.PDF. Copyright 2002-2024 Aspose Pty Ltd.</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="8">결</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="8">협 의</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="8">입 안</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="8">심 사</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="8">결 정</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="13"><h:U>자재(품목)청구서</h:U></h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="8">재</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">오더번호 :</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">1870755</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">통합환경인허가 관련 조액 Pre-NL REACTOR 개</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">문서유형 :</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">WH</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">공사 작업오더</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">용</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">도 : </h:Font><h:Font h:Size="7">투자</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">오더유형 : </h:Font><h:Font h:Size="7">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">투자공사</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">원가부문 :</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">26048</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">환경경영II</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">사 업 장 :</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">160</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">재고 BP</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">자재 메인창고</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">청구부서 :</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">20310</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">정비1팀</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">청구담당 :</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">215015</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">오은식</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">공사번호 :</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">2024-0150-30-01</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">통합환경인허가 관련 조액 Pre-NL REACTOR 개선 공사</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">설비번호 :</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-001-12-0530</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">PLATE</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L 20T*4´*8´</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Each</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">5</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">5</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-19000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-001-12-0430</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-006-41-0110</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">FLANGE</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L FF 150A*10K</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Each</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">4</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">4</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-20000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-006-41-0120</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-001-12-0350</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">PLATE</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L 10T*4´*8´</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Each</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">5</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">5</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-21000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-001-11-0460</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-017-12-0060</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">ROUND BAR</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L 20MM</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Meters</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">6</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">6</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-22000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-017-13-0115</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-001-38-0070</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">PIPE</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L S/40 65A</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Meters</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">6</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">6</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-23000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">04-001-46-0090</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-021-04-0125</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">FLAT BAR</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L 100*12T</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Meters</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">24</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">24</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">329695-24000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">null data</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-001-12-0160</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">PLATE</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">SUS316L 4T*5´*10´</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">Each</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">2</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">0</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">2</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">330344-1000</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="6">03-001-11-0280</h:Font></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">OZ553111 ESOH</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">2024-08-06 05시17분04초 오후</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"><h:Font h:Size="7">2/2</h:Font></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+ <Row>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+  <Cell><Data ss:Type="String"></Data></Cell>
+</Row>
+</Table>
+</Worksheet>
+</Workbook>
