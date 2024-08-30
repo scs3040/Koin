@@ -89,6 +89,7 @@ def zf_MR_create(input_xlsx):
     FileNam, FileExt = os.path.splitext(os.path.basename(input_xlsx))
     CurrDir = os.path.dirname(os.path.realpath(__file__))
     FileTmpl = CurrDir + "\\_Tmpl\\tmpl_자재요청.xlsx"
+    print(FileTmpl)
     output_xlsx = FileDir + "\\" + FileNam + "_자재요청서.xlsx"
 
     excel_app = win32.gencache.EnsureDispatch("Excel.Application")
@@ -101,8 +102,8 @@ def zf_MR_create(input_xlsx):
         wbt.Close()
         sys.exit(1)
 
-    wss = wbs.Sheets("page 1")
-    srows = wss.Range("A:A").Find('품번', LookAt=1).Row +1
+    wss = wbs.Sheets(1)
+    srows = wss.Range("A:A").Find('품번', LookAt=1).Row + 1
     srowf = get_last_row_from_column(wss, 'A')
 
     wst = wbt.Sheets(1)
@@ -124,6 +125,7 @@ def zf_MR_create(input_xlsx):
         wst.Cells(tr, 7).Value = wss.Cells(sr, 7).Value
 
     trim_blank_rows(wst)
+    wst.Range("A1").select()
 
     try:
         wbt.SaveAs(output_xlsx, FileFormat=51)
