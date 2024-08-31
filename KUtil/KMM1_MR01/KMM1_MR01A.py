@@ -87,7 +87,8 @@ def zs_SheetStyle(aWorksheet, aRange ):
 def zf_MR_create(input_xlsx):
     FileDir = os.path.dirname(input_xlsx).replace("/", "\\")
     FileNam, FileExt = os.path.splitext(os.path.basename(input_xlsx))
-    CurrDir = os.path.dirname(os.path.realpath(__file__))
+#    CurrDir = os.path.dirname(os.path.realpath(__file__)).replace("/", "\\")
+    CurrDir = os.getcwd()
     FileTmpl = CurrDir + "\\_Tmpl\\tmpl_자재요청.xlsx"
     print(FileTmpl)
     output_xlsx = FileDir + "\\" + FileNam + "_자재요청서.xlsx"
@@ -95,10 +96,12 @@ def zf_MR_create(input_xlsx):
     excel_app = win32.gencache.EnsureDispatch("Excel.Application")
     try:
         wbs = excel_app.Workbooks.Open(input_xlsx)
-        wbt = excel_app.Workbooks.Open(FileTmpl)
-
     except:
         wbs.Close()
+        sys.exit(1)
+    try:
+        wbt = excel_app.Workbooks.Open(FileTmpl)
+    except:
         wbt.Close()
         sys.exit(1)
 
@@ -125,7 +128,7 @@ def zf_MR_create(input_xlsx):
         wst.Cells(tr, 7).Value = wss.Cells(sr, 7).Value
 
     trim_blank_rows(wst)
-    wst.Range("A1").select()
+    wst.Range("A1").Select()
 
     try:
         wbt.SaveAs(output_xlsx, FileFormat=51)
