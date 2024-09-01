@@ -8,6 +8,7 @@ import aspose.pdf as ap
 #import asposecells
 
 import win32com.client as win32
+from win32com.client import dynamic
 from tqdm import tqdm
 import xlwings as xw
 
@@ -43,7 +44,7 @@ def zf_Xls2Xlsx(input_xls):
     print_message(2, 'open PDF ' + input_xls)
     excel_app = win32.gencache.EnsureDispatch("Excel.Application")
     try:
-        wb = excel_app.Workbooks.Open(input_xls)
+        wb = excel_app.Workbooks.Open(input_xls, Notify=False)
     except:
         wb.Close(False)
         excel_app.Application.Quit()
@@ -52,13 +53,15 @@ def zf_Xls2Xlsx(input_xls):
     zs_SheetMerge(wb)
 
     print_message(2, 'saving ... ' + output_xlsx)
-    try:
-        wb.SaveAs(output_xlsx, FileFormat=51)
-    except:
-        print_message(9, 'save cancel ')
-        wb.Close(False)
-        excel_app.Application.Quit()
-        sys.exit(1)
+    #try:
+    excel_app.DisplayAlerts = False
+    wb.SaveAs(output_xlsx, FileFormat=51)
+    excel_app.DisplayAlerts = True
+    #except:
+    #    print_message(9, 'save cancel ')
+    #    wb.Close(False)
+    #    excel_app.Application.Quit()
+    #    sys.exit(1)
 
     print_message(2, 'saved      ' + output_xlsx)
     wb.Close()
@@ -129,10 +132,11 @@ def zf_MR_create(input_xlsx):
         wbs.Close(False)
         excel_app.Application.Quit()
         sys.exit(1)
+
     try:
         wbt = excel_app.Workbooks.Open(FileTmpl)
     except:
-        wbt.Close(False)
+        wbt.Close(SaveChanges=False)
         excel_app.Application.Quit()
         sys.exit(1)
 
@@ -162,7 +166,9 @@ def zf_MR_create(input_xlsx):
     wst.Range("A1").Select()
 
     try:
+        excel_app.DisplayAlerts = False
         wbt.SaveAs(output_xlsx, FileFormat=51)
+        excel_app.DisplayAlerts = True
     except:
         print_message(0, 'save cancel ' + output_xlsx)
         wbt.Close(False)
@@ -226,25 +232,36 @@ def zf_pdf_2_xls(input_pdf, output_xls):
         # 파일을 MS Excel 형식으로 저장
         print_message(2, 'saving xls ... ' + output_xls)
         print_message(2, 'waiting (10 second) ... ')
+
         document.save(output_xls, save_option)
+
         print_message(2, 'saved          ' + output_xls)
     except:
         print_message(9, 'converting FAIL!')
         sys.exit(1)
 
 import subprocess
-def close_excel():
-    """
-    wb = xw.Book()
+def zf_wb_close_all(al_wbnam):
 
-    wb.close()
-    xw.App().quit()
-    """
+    com_app = dynamic.Dispatch('Excel.Application')
+    com_wbs = com_app.Workbooks
+    wb_names = [wb.Name for wb in com_wbs]
+    print_message(2, 'closing ' + str(wb_names))
+    lcnt = com_wbs.Count
+    for i in reversed(range(lcnt)):
+        wbsname = com_wbs[i].Name
+        if wbsname == 'tmpl_자재요청.xlsx':
+            com_wbs[i].Close(SaveChanges=False)
+
+        for wnam in al_wbnam:
+            if wnam in wbsname:
+                print_message(2, 'closed ' + wbsname)
+                com_wbs[i].Close(SaveChanges=False)
+    com_app.Quit()
 
     # subprocess.call(["taskkill", "/f", "/im", "EXCEL.EXE"])
-    subprocess.call(["taskkill", "/im", "EXCEL.EXE"])
+    #subprocess.call(["taskkill", "/im", "EXCEL.EXE"])
 def main():
-    close_excel()
 
     print_message(0, 'Starting ...')
 
@@ -257,6 +274,12 @@ def main():
     FileDir = os.path.dirname(input_pdf).replace("/", "\\")
     FileNam, FileExt = os.path.splitext(os.path.basename(input_pdf))
     output_xls = FileDir + "\\" + FileNam + ".xls"
+
+    wb_lst = list()
+    wb_lst.append(FileNam)
+    wb_lst.append('Tmpl_자재요청서.xlsx')
+    zf_wb_close_all(wb_lst)
+
     zf_pdf_2_xls(input_pdf, output_xls)
     """
     my_thread = threading.Thread(target =zf_pdf_2_xls, args=(input_pdf, output_xls,))
