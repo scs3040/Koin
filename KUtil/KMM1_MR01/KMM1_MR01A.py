@@ -1,14 +1,11 @@
 import os
 import sys
 from datetime import datetime
-#from tkinter import *
 from tkinter import filedialog
 
 import aspose.pdf as ap
-#import asposecells
 
 import win32com.client as win32
-from win32com.client import dynamic
 from tqdm import tqdm
 import xlwings as xw
 
@@ -243,7 +240,7 @@ def zf_pdf_2_xls(input_pdf, output_xls):
 import subprocess
 def zf_wb_close_all(al_wbnam):
 
-    com_app = dynamic.Dispatch('Excel.Application')
+    com_app = win32.dynamic.Dispatch('Excel.Application')
     com_wbs = com_app.Workbooks
     wb_names = [wb.Name for wb in com_wbs]
     print_message(2, 'closing ' + str(wb_names))
