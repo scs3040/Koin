@@ -12,33 +12,33 @@ import xlwings as xw
 #import threading
 #import time
 
-def zf_FileLoad():
-    print_message(2, 'select file ...')
+def zf_load_file():
+    zs_print_message(2, 'select file ...')
     filename = filedialog.askopenfilename(initialdir="./", title="Select file",
                                           filetypes=(("PDF files", "*.pdf"),
                                                      ("all files", "*.*")))
-    print_message(2, 'selected ' + filename)
+    zs_print_message(2, 'selected ' + filename)
     return filename
 
 
-def zf_FileSave():
-    print_message(2, 'select file ... ')
+def zf_save_file():
+    zs_print_message(2, 'select file ... ')
     filename = filedialog.asksaveasfilename(initialdir="./", title="Select file",
                                             filetypes=(("XLS files", "*.xls"),
                                                        ("all files", "*.*")))
     # print(filename)
-    print_message(2, 'Saved ' + filename)
+    zs_print_message(2, 'Saved ' + filename)
     return filename
 
 
-def zf_Xls2Xlsx(input_xls):
-    print_message(0, 'Starting ...')
+def zf_xls_2_xlsx(input_xls):
+    zs_print_message(0, 'Starting ...')
 
-    FileDir = os.path.dirname(input_xls).replace("/", "\\")
-    FileNam, FileExt = os.path.splitext(os.path.basename(input_xls))
-    output_xlsx = FileDir + "\\" + FileNam + "_1.xlsx"
+    file_dir = os.path.dirname(input_xls).replace("/", "\\")
+    file_name, file_ext = os.path.splitext(os.path.basename(input_xls))
+    output_xlsx = file_dir + "\\" + file_name + "_1.xlsx"
 
-    print_message(2, 'open PDF ' + input_xls)
+    zs_print_message(2, 'open PDF ' + input_xls)
     excel_app = win32.gencache.EnsureDispatch("Excel.Application")
     try:
         wb = excel_app.Workbooks.Open(input_xls, Notify=False)
@@ -47,48 +47,48 @@ def zf_Xls2Xlsx(input_xls):
         excel_app.Application.Quit()
         sys.exit(1)
 
-    zs_SheetMerge(wb)
+    zs_merge_sheet(wb)
 
-    print_message(2, 'saving ... ' + output_xlsx)
-    #try:
-    excel_app.DisplayAlerts = False
-    wb.SaveAs(output_xlsx, FileFormat=51)
-    excel_app.DisplayAlerts = True
-    #except:
-    #    print_message(9, 'save cancel ')
-    #    wb.Close(False)
-    #    excel_app.Application.Quit()
-    #    sys.exit(1)
+    zs_print_message(2, 'saving ... ' + output_xlsx)
+    try:
+        excel_app.DisplayAlerts = False
+        wb.SaveAs(output_xlsx, FileFormat=51)
+        excel_app.DisplayAlerts = True
+    except:
+        print_message(9, 'save cancel ')
+        wb.Close(False)
+        excel_app.Application.Quit()
+        sys.exit(1)
 
-    print_message(2, 'saved      ' + output_xlsx)
+    zs_print_message(2, 'saved      ' + output_xlsx)
     wb.Close()
 
     excel_app.Application.Quit()
 
-    print_message(9, 'Finished')
+    zs_print_message(9, 'Finished')
 
     return output_xlsx
 
 
-def zs_SheetMerge(aWorkbook):
-    wb = aWorkbook
-    print_message(2, 'starting ...')
+def zs_merge_sheet(a_workbook):
+    wb = a_workbook
+    zs_print_message(2, 'starting ...')
 
-    wsCnt = wb.Sheets.Count
+    wscnt = wb.Sheets.Count
     wst = wb.Sheets(1)
-    for i in tqdm(range(2, wsCnt + 1), mininterval=1):
+    for i in tqdm(range(2, wscnt + 1), mininterval=1):
 
         wss = wb.Sheets(i)
 
         lastrow = wst.UsedRange.Rows.Count
 
         for i in range(lastrow, 0, -1):
-            str1 = wss.Cells(i, 1).Value
-            if str1 is None:
+            tstr1 = wss.Cells(i, 1).Value
+            if tstr1 is None:
                 wss.Rows(i).EntireRow.Delete()
             else:
-                str2 = str1[0:2]
-                if not str2.isnumeric():
+                tstr2 = tstr1[0:2]
+                if not tstr2.isnumeric():
                     wss.Rows(i).EntireRow.Delete()
 
         wss.UsedRange.Copy()
@@ -98,29 +98,29 @@ def zs_SheetMerge(aWorkbook):
         wst.Paste()
         wst.Cells(1, 1).Value = ''
 
-    print_message(2, 'finished')
-    zs_SheetStyle(wst, "A:Z")
-def zs_SheetStyle(aWorksheet, aRange ):
-    print_message(2, 'starting .. ')
+    zs_print_message(2, 'finished')
+    zs_set_sheet_style(wst, "A:Z")
+def zs_set_sheet_style(a_worksheet, a_range ):
+    zs_print_message(2, 'starting .. ')
 
-    ws = aWorksheet
-    rng = aRange
+    lws = a_worksheet
+    lrng = a_range
 
-    ws.Range(aRange).Font.Size = 10
+    lws.Range(a_range).Font.Size = 10
 
-    print_message(2, 'finished')
+    zs_print_message(2, 'finished')
 
 
-def zf_MR_create(input_xlsx):
-    print_message(0, 'starting ...')
+def zf_create_mr(input_xlsx):
+    zs_print_message(0, 'starting ...')
 
-    FileDir = os.path.dirname(input_xlsx).replace("/", "\\")
-    FileNam, FileExt = os.path.splitext(os.path.basename(input_xlsx))
+    file_dir = os.path.dirname(input_xlsx).replace("/", "\\")
+    file_name, file_ext = os.path.splitext(os.path.basename(input_xlsx))
 
-    CurrDir = os.getcwd()
-    FileTmpl = CurrDir + "\\_Tmpl\\tmpl_자재요청.xlsx"
+    curr_dir = os.getcwd()
+    file_tmpl = curr_dir + "\\_Tmpl\\tmpl_자재요청.xlsx"
 
-    output_xlsx = FileDir + "\\" + FileNam + "_자재요청서.xlsx"
+    output_xlsx = file_dir + "\\" + file_name + "_자재요청서.xlsx"
 
     excel_app = win32.gencache.EnsureDispatch("Excel.Application")
     try:
@@ -131,7 +131,7 @@ def zf_MR_create(input_xlsx):
         sys.exit(1)
 
     try:
-        wbt = excel_app.Workbooks.Open(FileTmpl)
+        wbt = excel_app.Workbooks.Open(file_tmpl)
     except:
         wbt.Close(SaveChanges=False)
         excel_app.Application.Quit()
@@ -139,27 +139,27 @@ def zf_MR_create(input_xlsx):
 
     wss = wbs.Sheets(1)
     srows = wss.Range("A:A").Find('품번', LookAt=1).Row + 1
-    srowf = get_last_row_from_column(wss, 'A')
+    srowf = zf_get_last_row_from_column(wss, 'A')
 
     wst = wbt.Sheets(1)
     trows = wst.Range("A:A").Find('NO', LookAt=1).Row
-    trowf = get_last_row_from_column(wst, 'A')
+    trowf = zf_get_last_row_from_column(wst, 'A')
 
-    tr = trows
-    for sr in tqdm(range(srows, srowf + 1), mininterval= 1):
-        if int(wss.Cells(sr, 7).Value) == 0 :
+    trow = trows
+    for srow in tqdm(range(srows, srowf + 1), mininterval= 1):
+        if int(wss.Cells(srow, 7).Value) == 0 :
             continue
 
-        tr = tr + 1
-        wst.Cells(tr, 1).Value = tr - trows - 1
-        tmpstr = wss.Cells(sr, 1).Value
-        wst.Cells(tr, 2).Value = tmpstr.replace('-', '')
-        wst.Cells(tr, 3).Value = wss.Cells(sr, 2).Value
-        wst.Cells(tr, 5).Value = wss.Cells(sr, 3).Value
-        wst.Cells(tr, 6).Value = wss.Cells(sr, 4).Value
-        wst.Cells(tr, 7).Value = wss.Cells(sr, 7).Value
+        trow = trow + 1
+        wst.Cells(trow, 1).Value = trow - trows - 1
+        tmp_str = wss.Cells(srow, 1).Value
+        wst.Cells(trow, 2).Value = tmp_str.replace('-', '')
+        wst.Cells(trow, 3).Value = wss.Cells(srow, 2).Value
+        wst.Cells(trow, 5).Value = wss.Cells(srow, 3).Value
+        wst.Cells(trow, 6).Value = wss.Cells(srow, 4).Value
+        wst.Cells(trow, 7).Value = wss.Cells(srow, 7).Value
 
-    trim_blank_rows(wst)
+    zs_trim_blank_rows(wst)
     wst.Range("A1").Select()
 
     try:
@@ -167,7 +167,7 @@ def zf_MR_create(input_xlsx):
         wbt.SaveAs(output_xlsx, FileFormat=51)
         excel_app.DisplayAlerts = True
     except:
-        print_message(0, 'save cancel ' + output_xlsx)
+        zs_print_message(0, 'save cancel ' + output_xlsx)
         wbt.Close(False)
         excel_app.Application.Quit()
         sys.exit(1)
@@ -176,83 +176,87 @@ def zf_MR_create(input_xlsx):
     wbt.Close()
     excel_app.Application.Quit()
 
-    print_message(9, 'finished')
+    zs_print_message(9, 'finished')
 
     return output_xlsx
 
-def get_column_after(aSheet, column, offset):
-    ws = aSheet
+def zs_get_column_after(a_sheet, column, offset):
+    ws = a_sheet
     for item in ws.Range("{0}{1}:{0}{2}".format(column, offset, ws.get_last_row_from_column(column))).Value:
         print(item[0])
-def get_last_row_from_column(aSheet, column):
+def zf_get_last_row_from_column(aSheet, column):
     ws = aSheet
     return ws.Range("{0}{1}".format(column, ws.Rows.Count)).End(win32.constants.xlUp).Row
 
-def trim_blank_rows(aSheet):
-    print_message(2, 'starting ...')
+def zs_trim_blank_rows(aSheet):
+    zs_print_message(2, 'starting ...')
 
     ws = aSheet
     rows = ws.Range("A:A").Find('NO', LookAt=1).Row
-    rowf = get_last_row_from_column(ws, 'A')
+    rowf = zf_get_last_row_from_column(ws, 'A')
 
-    for tr in range(rowf, rows - 1, -1):
+    for trow in range(rowf, rows - 1, -1):
 
-        lr = tr - rows - 1
-        if (ws.Cells(tr, 2).Value is None) or (ws.Cells(tr, 2).Value == ''):
-            if ws.Cells(tr, 1).Value % 30 == 0:
-                if not ws.Cells(tr - 30 + 1, 2).Value is None:
+        lrow = trow - rows - 1
+        if (ws.Cells(trow, 2).Value is None) or (ws.Cells(trow, 2).Value == ''):
+            if ws.Cells(trow, 1).Value % 30 == 0:
+                if not ws.Cells(trow - 30 + 1, 2).Value is None:
                     break
-            ws.Rows(tr).EntireRow.Delete()
+            ws.Rows(trow).EntireRow.Delete()
 
-    print_message(2, 'finished')
+    zs_print_message(2, 'finished')
 
-def print_message(asep, amesg):
+def zs_print_message(a_sep, a_mesg):
     now = "[" + datetime.now().strftime("%m/%d/%Y-%H:%M:%S") +"]"
-    if asep == 0:
+    if a_sep == 0:
         print('==========================================================')
 
-    print(now, sys._getframe(1).f_code.co_name + "()", amesg, sep=':')
+    print(now, sys._getframe(1).f_code.co_name + "()", a_mesg, sep=':')
 
-    if asep == 9:
+    if a_sep == 9:
         print('----------------------------------------------------------')
 
 def zf_pdf_2_xls(input_pdf, output_xls):
-    print_message(2, 'opening PDF ...')
+    zs_print_message(2, 'opening PDF ...')
     try:
         document = ap.Document(input_pdf)
 
         # 저장 옵션 생성 및 설정
-        print_message(2, 'converting PDF -> xls')
+        zs_print_message(2, 'converting PDF -> xls')
         save_option = ap.ExcelSaveOptions()
         save_option.format = ap.ExcelSaveOptions.ExcelFormat.XML_SPREAD_SHEET2003
 
         # 파일을 MS Excel 형식으로 저장
-        print_message(2, 'saving xls ... ' + output_xls)
-        print_message(2, 'waiting (10 second) ... ')
+        zs_print_message(2, 'saving xls ... ' + output_xls)
+        zs_print_message(2, 'waiting (10 second) ... ')
 
         document.save(output_xls, save_option)
 
-        print_message(2, 'saved          ' + output_xls)
+        zs_print_message(2, 'saved          ' + output_xls)
     except:
-        print_message(9, 'converting FAIL!')
+        zs_print_message(9, 'converting FAIL!')
         sys.exit(1)
 
 import subprocess
-def zf_wb_close_all(al_wbnam):
+def zf_close_all_wb(alist_wbname):
+
+    llist = alist_wbname
 
     com_app = win32.dynamic.Dispatch('Excel.Application')
     com_wbs = com_app.Workbooks
-    wb_names = [wb.Name for wb in com_wbs]
-    print_message(2, 'closing ' + str(wb_names))
+    list_wb_names = [wb.Name for wb in com_wbs]
+
+    zs_print_message(2, 'closing ' + str(list_wb_names))
+
     lcnt = com_wbs.Count
     for i in reversed(range(lcnt)):
-        wbsname = com_wbs[i].Name
-        if wbsname == 'tmpl_자재요청.xlsx':
+        wb_name = com_wbs[i].Name
+        if wb_name == 'tmpl_자재요청.xlsx':
             com_wbs[i].Close(SaveChanges=False)
 
-        for wnam in al_wbnam:
-            if wnam in wbsname:
-                print_message(2, 'closed ' + wbsname)
+        for wbnam in alist_wbname:
+            if wbnam in wb_name:
+                zs_print_message(2, 'closed ' + wb_name)
                 com_wbs[i].Close(SaveChanges=False)
     com_app.Quit()
 
@@ -260,22 +264,23 @@ def zf_wb_close_all(al_wbnam):
     #subprocess.call(["taskkill", "/im", "EXCEL.EXE"])
 def main():
 
-    print_message(0, 'Starting ...')
+    zs_print_message(0, 'Starting ...')
 
-    input_pdf = zf_FileLoad()
+    input_pdf = zf_load_file()
 
     if input_pdf == '':
-        print_message(9, 'cancel')
+        zs_print_message(9, 'cancel')
         sys.exit(1)
 
-    FileDir = os.path.dirname(input_pdf).replace("/", "\\")
-    FileNam, FileExt = os.path.splitext(os.path.basename(input_pdf))
-    output_xls = FileDir + "\\" + FileNam + ".xls"
+    file_dir = os.path.dirname(input_pdf).replace("/", "\\")
+    file_name, file_ext = os.path.splitext(os.path.basename(input_pdf))
+    output_xls = file_dir + "\\" + file_name + ".xls"
 
-    wb_lst = list()
-    wb_lst.append(FileNam)
-    wb_lst.append('Tmpl_자재요청서.xlsx')
-    zf_wb_close_all(wb_lst)
+    list_wb = list()
+    list_wb.append(file_name)
+    list_wb.append('Tmpl_자재요청서.xlsx')
+
+    zf_close_all_wb(list_wb)
 
     zf_pdf_2_xls(input_pdf, output_xls)
     """
@@ -288,16 +293,16 @@ def main():
     print('')
     """
     # 파일을 MS Excel 형식 변경 ( xls --> xlsx )
-    print_message(2, 'converting xls -> xlsx')
+    zs_print_message(2, 'converting xls -> xlsx')
     input_xlsx = output_xls
-    output_xlsx = zf_Xls2Xlsx(input_xlsx)
+    output_xlsx = zf_xls_2_xlsx(input_xlsx)
 
     # 파일 생성 - 자재요청서
-    print_message(2, 'creating MR')
+    zs_print_message(2, 'creating MR')
     input_xlsx = output_xlsx
-    output_xlsx = zf_MR_create(input_xlsx)
+    output_xlsx = zf_create_mr(input_xlsx)
 
-    print_message(9, 'finshed')
+    zs_print_message(9, 'finshed')
 
 if __name__ == "__main__":
     main()
