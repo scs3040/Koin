@@ -16,7 +16,7 @@ class windows_tkinter:
     def __init__(self, window):
         self.window = window
         self.window.title("자재청구(반출) 요청서 생성")
-        self.window.geometry("580x500+100+100")
+        self.window.geometry("800x500+100+100")
         self.window.resizable(False, False)
 
         self.dir_home = os.getcwd().replace("/", "\\")
@@ -36,55 +36,65 @@ class windows_tkinter:
         self.CheckVar41 = True
         self.CheckVar51 = True
 
-        self.frame10 = tk.Frame(self.window, width=580, height=60, padx=5, pady=2, relief='groove', bd=2)
-        self.frame20 = tk.Frame(self.window, width=600, height=73, padx=5, pady=2, relief='groove', bd=2)
-        self.frame30 = tk.Frame(self.window, width=600, height=72, padx=5, pady=2, relief='groove', bd=2)
-        self.frame40 = tk.Frame(self.window, width=600, height=72, padx=5, pady=2, relief='groove', bd=2)
-        self.frame90 = tk.Frame(self.window, width=600, height=200, padx=5, pady=2, relief='groove', bd=2)
+        self.frame10 = tk.Frame(self.window, width=750, height=60, padx=4, pady=4, relief='groove', bd=2)
+        self.frame20 = tk.Frame(self.window, width=750, height=100, padx=4, pady=4, relief='groove', bd=2)
+        self.frame30 = tk.Frame(self.window, width=750, height=100, padx=4, pady=4, relief='groove', bd=2)
+        self.frame40 = tk.Frame(self.window, width=750, height=100, padx=4, pady=4, relief='groove', bd=2)
+        self.frame90 = tk.Frame(self.window, width=750, height=200, padx=4, pady=4, relief='groove', bd=2)
 
         self.frame11 = tk.Frame(self.frame10, padx=2, pady=2, relief='groove', bd=2)
 
-        self.frame21 = tk.Frame(self.frame20, padx=0, pady=0, relief='groove', bd=2)
-        self.frame22 = tk.Frame(self.frame20, padx=0, pady=0, relief='groove', bd=2)
-        self.frame31 = tk.Frame(self.frame30, padx=0, pady=0, relief='groove', bd=2)
-        self.frame32 = tk.Frame(self.frame30, padx=0, pady=0, relief='groove', bd=2)
-        self.frame41 = tk.Frame(self.frame40, padx=0, pady=0, relief='groove', bd=2)
-        self.frame42 = tk.Frame(self.frame40, padx=0, pady=0, relief='groove', bd=2)
+        self.frame21 = tk.Frame(self.frame20, padx=2, pady=2, relief='groove', bd=2)
+        self.frame22 = tk.Frame(self.frame20, padx=2, pady=2, relief='groove', bd=2)
+        self.frame23 = tk.Frame(self.frame20, padx=2, pady=2, relief='groove', bd=2)
+        self.frame24 = tk.Frame(self.frame20, padx=2, pady=2, relief='groove', bd=2)
 
-        self.label11 = tk.Label(self.frame11, text='자재청구(불출) 요청서 생성', padx=5, pady=5, relief='groove', font=("Arial", 15))
-        self.button11 = tk.Button(self.frame11, text="Close XL", width=5, height=1, padx=5, pady=2,
+        self.frame31 = tk.Frame(self.frame30, padx=2, pady=2, relief='groove', bd=2)
+        self.frame32 = tk.Frame(self.frame30, padx=2, pady=2, relief='groove', bd=2)
+        self.frame33 = tk.Frame(self.frame30, padx=2, pady=2, relief='groove', bd=2)
+        self.frame34 = tk.Frame(self.frame30, padx=2, pady=2, relief='groove', bd=2)
+
+        self.frame41 = tk.Frame(self.frame40, padx=2, pady=2, relief='groove', bd=2)
+        self.frame42 = tk.Frame(self.frame40, padx=2, pady=2, relief='groove', bd=2)
+        self.frame43 = tk.Frame(self.frame40, padx=2, pady=2, relief='groove', bd=2)
+        self.frame44 = tk.Frame(self.frame40, padx=2, pady=2, relief='groove', bd=2)
+
+        self.label11 = tk.Label(self.frame11, text='자재청구(불출) 요청서 생성', padx=1, pady=1, relief='groove', font=("Arial", 15))
+        self.button11 = tk.Button(self.frame11, text="SOS", width=8, height=1, padx=1, pady=1,
                             command=lambda: self.zf_close_wb_click())
-        self.label111 = tk.Label(self.frame11, text='', width=44, padx=5, pady=5, relief='groove')
+        self.label111 = tk.Label(self.frame11, text='', width=4, padx=4, pady=5, relief='groove')
 
-        self.label21  = tk.Label(self.frame21, text='자재청구서(PDF)', width=15, padx=5, pady=5, relief='groove')
-        self.entry21  = tk.Entry(self.frame21, width=50, relief='sunken', bg='white')
-        self.label211 = tk.Label(self.frame21, text='    ', width=2, padx=5, pady=5, relief='groove')
-        self.button21 = tk.Button(self.frame21, text="버튼", width=5, height=1, padx=5,
+        self.label21  = tk.Label(self.frame21, text='자재청구서(PDF)', width=14,           padx=4, pady=2, relief='groove')
+        self.entry21  = tk.Entry(self.frame22,                       width=50,                           relief='sunken', bg='white')
+        self.label211 = tk.Label(self.frame23, text='    ',          width=2,            padx=4, pady=2, relief='groove')
+        self.button21 = tk.Button(self.frame24, text="PDF선택",       width=14, height=2, padx=4, pady=0,
                             command=lambda: self.btn_get_file_pdf_click())
-        self.label22  = tk.Label(self.frame22, text='작업폴더', width=15, padx=5, pady=5,relief='groove')
-        self.entry22  = tk.Entry(self.frame22, width=50, relief='sunken', bg='white')
-        self.label221 = tk.Label(self.frame22, text='     ', width=2, padx=5, pady=5,relief='groove')
-        self.button22 = tk.Button(self.frame22, text="버튼", width=5, height=1, padx=5, pady=2,
+        self.label22  = tk.Label(self.frame21, text='작업폴더',        width=14,           padx=4, pady=2, relief='groove')
+        self.entry22  = tk.Entry(self.frame22,                       width=50,                            relief='sunken', bg='white')
+        self.label221 = tk.Label(self.frame23, text='     ',          width=2,            padx=4, pady=2, relief='groove')
+        self.button22 = tk.Button(self.frame24, text="---",           width=14, height=2, padx=4, pady=0,
                             command=lambda: self.btn_get_file_pdf_click())
-        self.label31  = tk.Label(self.frame31, text='변환(1차)', width=15, padx=5, pady=5, relief='groove')
-        self.entry31  = tk.Entry(self.frame31, width=50, relief='sunken', bg='white')
-        self.label311 = tk.Label(self.frame31, text='      ', width=2, padx=5, pady=5, relief='groove')
-        self.button31 = tk.Button(self.frame31, text="버튼", width=5, height=1, padx=5, pady=2,
+
+        self.label31  = tk.Label (self.frame31, text='변환(PDF->XLSX)', width=14,           padx=4, pady=2, relief='groove')
+        self.entry31  = tk.Entry (self.frame32,                        width=50,                           relief='sunken', bg='white')
+        self.label311 = tk.Label (self.frame33, text='      ',         width=2,            padx=4, pady=2, relief='groove')
+        self.button31 = tk.Button(self.frame34, text="변환(PDF->XLSX)", width=14, height=2, padx=4, pady=0,
                             command=lambda: self.btn_run_func_a_click())
-        self.label32  = tk.Label(self.frame32, text='변환(xlsx)', width=15, padx=5, pady=5, relief='groove')
-        self.entry32  = tk.Entry(self.frame32, width=50, relief='sunken', bg='white')
-        self.label321 = tk.Label(self.frame32, text='      ', width=10, padx=5, pady=5, relief='groove')
-        self.button32 = tk.Button(self.frame32, text="버튼", width=5, height=1, padx=5, pady=2,
+        self.label32  = tk.Label (self.frame31, text='변환(XLS->XLSX)', width=14,           padx=4, pady=2, relief='groove')
+        self.entry32  = tk.Entry (self.frame32,                        width=50,                           relief='sunken', bg='white')
+        self.label321 = tk.Label (self.frame33, text='      ',         width=2,            padx=4, pady=2, relief='groove')
+        self.button32 = tk.Button(self.frame34, text="---",            width=14, height=2, padx=4, pady=0,
                             command=lambda: self.btn_get_file_pdf_click())
-        self.label41  = tk.Label(self.frame41, text='반출요청서', width=15, padx=5, pady=5, relief='groove')
-        self.entry41  = tk.Entry(self.frame41, width=50, relief='sunken', bg='white')
-        self.label411 = tk.Label(self.frame41, text='      ', width=2, padx=5, pady=5, relief='groove')
-        self.button41 = tk.Button(self.frame41, text="버튼", width=5, height=1, padx=5, pady=2,
+
+        self.label41  = tk.Label(self.frame41, text='반출요청서',        width=14,           padx=4, pady=2, relief='groove')
+        self.entry41  = tk.Entry(self.frame42,                         width=50,                          relief='sunken', bg='white')
+        self.label411 = tk.Label(self.frame43, text='      ',          width=2,            padx=4, pady=2, relief='groove')
+        self.button41 = tk.Button(self.frame44, text="작  성",          width=14, height=1, padx=4, pady=0,
                             command=lambda: self.btn_run_func_b_click())
-        self.label42  = tk.Label(self.frame42, text='자재요청서', width=15, padx=5, pady=5, relief='groove')
-        self.entry42  = tk.Entry(self.frame42, width=50, relief='sunken', bg='white')
-        self.label421 = tk.Label(self.frame42, text='      ', width=2, padx=5, pady=5, relief='groove')
-        self.button42 = tk.Button(self.frame42, text="버튼", width=5, height=1, padx=5, pady=2,
+        self.label42  = tk.Label(self.frame41, text='자재요청서',        width=14,           padx=4, pady=2, relief='groove')
+        self.entry42  = tk.Entry(self.frame42,                         width=50,                          relief='sunken', bg='white')
+        self.label421 = tk.Label(self.frame43, text='      ',          width=2,            padx=4, pady=2, relief='groove')
+        self.button42 = tk.Button(self.frame44, text="작  성",          width=14, height=1, padx=4, pady=0,
                             command=lambda: self.btn_run_func_c_click())
 
         self.frame10.pack(expand=True)
@@ -95,46 +105,54 @@ class windows_tkinter:
 
         self.frame11.pack(expand=True)
 
-        self.frame21.place(x=0, y=0)
-        self.frame22.place(x=0, y=32)
-        self.frame31.place(x=0, y=0)
-        self.frame32.place(x=0, y=30)
-        self.frame41.place(x=0, y=0)
-        self.frame42.place(x=0, y=30)
+        self.frame21.pack(side='left')
+        self.frame22.pack(side='left')
+        self.frame23.pack(side='left')
+        self.frame24.pack(side='left')
+
+        self.frame31.pack(side='left')
+        self.frame32.pack(side='left')
+        self.frame33.pack(side='left')
+        self.frame34.pack(side='left')
+
+        self.frame41.pack(side='left')
+        self.frame42.pack(side='left')
+        self.frame43.pack(side='left')
+        self.frame44.pack(side='left')
 
         self.label11.pack(side='left')
         self.button11.pack(side='right')
         self.label111.pack(side='left')
         #self.button12.pack(side='right')
 
-        self.label21.pack(side='left')
-        self.entry21.pack(side='left', ipadx=1, ipady=1)
-        self.label211.pack(side='left')
-        self.button21.pack(side='left')
+        self.label21.pack()
+        self.entry21.pack(ipadx=2, ipady=2)
+        self.label211.pack()
+        self.button21.pack()
 
-        self.label22.pack(side='left')
-        self.entry22.pack(side='left', ipadx=1, ipady=1)
-        self.label221.pack(side='left')
+        self.label22.pack()
+        self.entry22.pack(ipadx=2, ipady=2)
+        self.label221.pack()
         #self.button22.pack(side='left')
 
-        self.label31.pack(side='left')
-        self.entry31.pack(side='left', ipadx=1, ipady=1)
-        self.label311.pack(side='left')
-        self.button31.pack(side='left')
+        self.label31.pack()
+        self.entry31.pack(ipadx=2, ipady=2)
+        self.label311.pack()
+        self.button31.pack()
 
-        self.label32.pack(side='left')
-        self.entry32.pack(side='left', ipadx=1, ipady=1)
-        self.label321.pack(side='left')
+        self.label32.pack()
+        self.entry32.pack(ipadx=2, ipady=2)
+        self.label321.pack()
 
-        self.label41.pack(side='left')
-        self.entry41.pack(side='left', ipadx=1, ipady=1)
-        self.label411.pack(side='left')
-        self.button41.pack(side='left')
+        self.label41.pack()
+        self.entry41.pack(ipadx=2, ipady=2)
+        self.label411.pack()
+        self.button41.pack()
 
-        self.label42.pack(side='left')
-        self.entry42.pack(side='left', ipadx=1, ipady=1)
-        self.label421.pack(side='left')
-        self.button42.pack(side='left')
+        self.label42.pack()
+        self.entry42.pack(ipadx=2, ipady=2)
+        self.label421.pack()
+        self.button42.pack()
 
         self.__main__()
 

@@ -65,7 +65,7 @@ def zf_xls_2_xlsx(input_xls, output_xlsx):
         excel_app.Application.Quit()
         sys.exit(1)
 
-    zs_print_message(2, 'saved      ' + output_xlsx)
+    zs_print_message(2, 'success..! ' + output_xlsx)
     wb.Close()
 
     excel_app.Application.Quit()
@@ -107,7 +107,7 @@ def zs_merge_sheet(a_workbook):
 
 
 def zs_set_sheet_style(a_worksheet, a_range ):
-    zs_print_message(2, 'starting .. ')
+    zs_print_message(2, 'starting ... ')
 
     lws = a_worksheet
     lrng = a_range
@@ -168,13 +168,13 @@ def zf_pdf_2_xls(input_pdf, output_xls):
         save_option.format = ap.ExcelSaveOptions.ExcelFormat.XML_SPREAD_SHEET2003
 
         # 파일을 MS Excel 형식으로 저장
-        zs_print_message(2, 'saving xls ... ' + output_xls)
+        zs_print_message(2, 'creating xls ... ' + output_xls)
         zs_print_message(2, 'waiting (10 second) ... ')
 
 
         document.save(output_xls, save_option)
 
-        zs_print_message(2, 'saved          ' + output_xls)
+        zs_print_message(2, 'success! ....... ' + output_xls)
     except:
         zs_print_message(2, 'converting FAIL!')
         sys.exit(1)
