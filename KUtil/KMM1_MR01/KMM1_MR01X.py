@@ -1,174 +1,282 @@
-import tkinter
+import os
+import sys
+import tkinter as tk
+from tkinter import filedialog
+import win32com.client as win32
+from datetime import datetime, timedelta
+import threading
+import time
+
+
+import KMM1_MR01A as func_a
+import KMM1_MR01B as func_b
+import KMM1_MR01C as func_c
+
 class windows_tkinter:
     def __init__(self, window):
         self.window = window
-        self.window.title("자재 청구/불출요청서 생성")
-        self.window.geometry("850x800+100+100")
+        self.window.title("자재청구(반출) 요청서 생성")
+        self.window.geometry("580x500+100+100")
         self.window.resizable(False, False)
 
-        self.arg1 = 1
-        self.arg2 = "alpha"
-        self.arg3 = "beta"
+        self.dir_home = os.getcwd().replace("/", "\\")
+        self.dir_bin  = self.dir_home + "\\_bin"
+        self.dir_tmpl = self.dir_home + "\\_tmpl"
+        self.dir_curr = os.getcwd().replace("/", "\\")
+        self.pdf_name = ''
+        self.conv1_name = ''
+        self.xmast_name = ''
+        self.xdoc_b_name = ''
+        self.xdoc_c_name = ''
+        self.tmpl_b_name = '_tmpl_반출요청서.xlsx'
+        self.tmpl_c_name = '_tmpl_자재요청서.xlsx'
+
+        self.CheckVar21 = False
+        self.CheckVar31 = True
+        self.CheckVar41 = True
+        self.CheckVar51 = True
+
+        self.frame10 = tk.Frame(self.window, width=580, height=60, padx=5, pady=2, relief='groove', bd=2)
+        self.frame20 = tk.Frame(self.window, width=600, height=73, padx=5, pady=2, relief='groove', bd=2)
+        self.frame30 = tk.Frame(self.window, width=600, height=72, padx=5, pady=2, relief='groove', bd=2)
+        self.frame40 = tk.Frame(self.window, width=600, height=72, padx=5, pady=2, relief='groove', bd=2)
+        self.frame90 = tk.Frame(self.window, width=600, height=200, padx=5, pady=2, relief='groove', bd=2)
+
+        self.frame11 = tk.Frame(self.frame10, padx=2, pady=2, relief='groove', bd=2)
+
+        self.frame21 = tk.Frame(self.frame20, padx=0, pady=0, relief='groove', bd=2)
+        self.frame22 = tk.Frame(self.frame20, padx=0, pady=0, relief='groove', bd=2)
+        self.frame31 = tk.Frame(self.frame30, padx=0, pady=0, relief='groove', bd=2)
+        self.frame32 = tk.Frame(self.frame30, padx=0, pady=0, relief='groove', bd=2)
+        self.frame41 = tk.Frame(self.frame40, padx=0, pady=0, relief='groove', bd=2)
+        self.frame42 = tk.Frame(self.frame40, padx=0, pady=0, relief='groove', bd=2)
+
+        self.label11 = tk.Label(self.frame11, text='자재청구(불출) 요청서 생성', padx=5, pady=5, relief='groove', font=("Arial", 15))
+        self.button11 = tk.Button(self.frame11, text="Close XL", width=5, height=1, padx=5, pady=2,
+                            command=lambda: self.zf_close_wb_click())
+        self.label111 = tk.Label(self.frame11, text='', width=44, padx=5, pady=5, relief='groove')
+
+        self.label21  = tk.Label(self.frame21, text='자재청구서(PDF)', width=15, padx=5, pady=5, relief='groove')
+        self.entry21  = tk.Entry(self.frame21, width=50, relief='sunken', bg='white')
+        self.label211 = tk.Label(self.frame21, text='    ', width=2, padx=5, pady=5, relief='groove')
+        self.button21 = tk.Button(self.frame21, text="버튼", width=5, height=1, padx=5,
+                            command=lambda: self.btn_get_file_pdf_click())
+        self.label22  = tk.Label(self.frame22, text='작업폴더', width=15, padx=5, pady=5,relief='groove')
+        self.entry22  = tk.Entry(self.frame22, width=50, relief='sunken', bg='white')
+        self.label221 = tk.Label(self.frame22, text='     ', width=2, padx=5, pady=5,relief='groove')
+        self.button22 = tk.Button(self.frame22, text="버튼", width=5, height=1, padx=5, pady=2,
+                            command=lambda: self.btn_get_file_pdf_click())
+        self.label31  = tk.Label(self.frame31, text='변환(1차)', width=15, padx=5, pady=5, relief='groove')
+        self.entry31  = tk.Entry(self.frame31, width=50, relief='sunken', bg='white')
+        self.label311 = tk.Label(self.frame31, text='      ', width=2, padx=5, pady=5, relief='groove')
+        self.button31 = tk.Button(self.frame31, text="버튼", width=5, height=1, padx=5, pady=2,
+                            command=lambda: self.btn_run_func_a_click())
+        self.label32  = tk.Label(self.frame32, text='변환(xlsx)', width=15, padx=5, pady=5, relief='groove')
+        self.entry32  = tk.Entry(self.frame32, width=50, relief='sunken', bg='white')
+        self.label321 = tk.Label(self.frame32, text='      ', width=10, padx=5, pady=5, relief='groove')
+        self.button32 = tk.Button(self.frame32, text="버튼", width=5, height=1, padx=5, pady=2,
+                            command=lambda: self.btn_get_file_pdf_click())
+        self.label41  = tk.Label(self.frame41, text='반출요청서', width=15, padx=5, pady=5, relief='groove')
+        self.entry41  = tk.Entry(self.frame41, width=50, relief='sunken', bg='white')
+        self.label411 = tk.Label(self.frame41, text='      ', width=2, padx=5, pady=5, relief='groove')
+        self.button41 = tk.Button(self.frame41, text="버튼", width=5, height=1, padx=5, pady=2,
+                            command=lambda: self.btn_run_func_b_click())
+        self.label42  = tk.Label(self.frame42, text='자재요청서', width=15, padx=5, pady=5, relief='groove')
+        self.entry42  = tk.Entry(self.frame42, width=50, relief='sunken', bg='white')
+        self.label421 = tk.Label(self.frame42, text='      ', width=2, padx=5, pady=5, relief='groove')
+        self.button42 = tk.Button(self.frame42, text="버튼", width=5, height=1, padx=5, pady=2,
+                            command=lambda: self.btn_run_func_c_click())
+
+        self.frame10.pack(expand=True)
+        self.frame20.pack(expand=True)
+        self.frame30.pack(expand=True)
+        self.frame40.pack(expand=True)
+        self.frame90.pack(expand=True)
+
+        self.frame11.pack(expand=True)
+
+        self.frame21.place(x=0, y=0)
+        self.frame22.place(x=0, y=32)
+        self.frame31.place(x=0, y=0)
+        self.frame32.place(x=0, y=30)
+        self.frame41.place(x=0, y=0)
+        self.frame42.place(x=0, y=30)
+
+        self.label11.pack(side='left')
+        self.button11.pack(side='right')
+        self.label111.pack(side='left')
+        #self.button12.pack(side='right')
+
+        self.label21.pack(side='left')
+        self.entry21.pack(side='left', ipadx=1, ipady=1)
+        self.label211.pack(side='left')
+        self.button21.pack(side='left')
+
+        self.label22.pack(side='left')
+        self.entry22.pack(side='left', ipadx=1, ipady=1)
+        self.label221.pack(side='left')
+        #self.button22.pack(side='left')
+
+        self.label31.pack(side='left')
+        self.entry31.pack(side='left', ipadx=1, ipady=1)
+        self.label311.pack(side='left')
+        self.button31.pack(side='left')
+
+        self.label32.pack(side='left')
+        self.entry32.pack(side='left', ipadx=1, ipady=1)
+        self.label321.pack(side='left')
+
+        self.label41.pack(side='left')
+        self.entry41.pack(side='left', ipadx=1, ipady=1)
+        self.label411.pack(side='left')
+        self.button41.pack(side='left')
+
+        self.label42.pack(side='left')
+        self.entry42.pack(side='left', ipadx=1, ipady=1)
+        self.label421.pack(side='left')
+        self.button42.pack(side='left')
+
         self.__main__()
 
-    def command_args(self, argument1, argument2, argument3):
-        print(argument1, argument2, argument3)
-        self.arg1 = argument1 * 2
-        self.label1.text = self.arg1
+
+    def btn_get_file_pdf_click(self):
+        self.file_pdf = self.zf_load_file_pdf()
+
+        self.dir_curr = os.path.dirname(self.file_pdf).replace("/", "\\")
+        self.pdf_name = os.path.splitext(os.path.basename(self.file_pdf))[0]
+        self.conv1_name = self.pdf_name + '_cnv1.xls'
+        self.xmast_name = self.pdf_name + '_mast.xlsx'
+        self.xdoc_b_name = self.pdf_name + '_mast_반출요청서.xlsx'
+        self.xdoc_c_name = self.pdf_name + '_mast_자재요청서.xlsx'
 
 
-    def zs_draw_screen(self):
-        frame10 = tkinter.Frame(self.window, width=840, height=60, relief='groove', bd=2)
-        frame20 = tkinter.Frame(self.window, width=840, height=98, padx=5, pady=5, relief='groove', bd=2)
-        frame30 = tkinter.Frame(self.window, width=840, height=100, padx=5, pady=5, relief='groove', bd=2)
-        frame40 = tkinter.Frame(self.window, width=840, height=100, padx=5, pady=5, relief='groove', bd=2)
-        frame50 = tkinter.Frame(self.window, width=840, height=100, padx=5, pady=5, relief='groove', bd=2)
-        frame60 = tkinter.Frame(self.window, width=840, height=300, relief='groove', bd=2)
+        self.entry21.delete(0, tk.END)
+        self.entry21.insert(0, self.pdf_name)
+        self.entry22.delete(0, tk.END)
+        self.entry22.insert(0, self.dir_curr)
+        self.entry31.delete(0, tk.END)
+        self.entry31.insert(0, self.conv1_name)
+        self.entry32.delete(0, tk.END)
+        self.entry32.insert(0, self.xmast_name)
+        self.entry41.delete(0, tk.END)
+        self.entry41.insert(0, self.xdoc_b_name)
+        self.entry42.delete(0, tk.END)
+        self.entry42.insert(0, self.xdoc_c_name)
 
-        frame21 = tkinter.Frame(frame20, width=140, height=50, padx=5, pady=5, relief='groove', bd=2)
-        frame22 = tkinter.Frame(frame20, width=600, height=50, padx=5, pady=5, relief='groove', bd=2)
-        frame23 = tkinter.Frame(frame20, width=50, height=50, padx=5, pady=5, relief='groove', bd=2)
-        frame24 = tkinter.Frame(frame20, width=50, height=50, padx=5, pady=5, relief='groove', bd=2)
-        frame25 = tkinter.Frame(frame20, width=50, height=50, padx=5, pady=5, relief='groove', bd=2)
-        frame31 = tkinter.Frame(frame30, width=140, height=50, padx=5, pady=6, relief='groove', bd=2)
-        frame32 = tkinter.Frame(frame30, width=600, height=50, padx=5, pady=6, relief='groove', bd=2)
-        frame33 = tkinter.Frame(frame30, width=50, height=50, padx=5, pady=5, relief='groove', bd=2)
-        frame34 = tkinter.Frame(frame30, width=50, height=50, padx=5, pady=5, relief='groove', bd=2)
-        frame35 = tkinter.Frame(frame30, width=50, height=50, padx=5, pady=5, relief='groove', bd=2)
-        frame41 = tkinter.Frame(frame40, width=140, height=90, padx=5, pady=6, relief='groove', bd=2)
-        frame42 = tkinter.Frame(frame40, width=600, height=50, padx=5, pady=6, relief='groove', bd=2)
-        frame43 = tkinter.Frame(frame40, width=50, height=50, padx=5, pady=5, relief='groove', bd=2)
-        frame44 = tkinter.Frame(frame40, width=50, height=50, padx=5, pady=5, relief='groove', bd=2)
-        frame45 = tkinter.Frame(frame40, width=50, height=50, padx=5, pady=5, relief='groove', bd=2)
-        frame51 = tkinter.Frame(frame50, width=140, height=50, padx=5, pady=6, relief='groove', bd=2)
-        frame52 = tkinter.Frame(frame50, width=600, height=50, padx=5, pady=6, relief='groove', bd=2)
-        frame53 = tkinter.Frame(frame50, width=50, height=50, padx=5, pady=5, relief='groove', bd=2)
-        frame54 = tkinter.Frame(frame50, width=50, height=50, padx=5, pady=5, relief='groove', bd=2)
-        frame55 = tkinter.Frame(frame50, width=50, height=50, padx=5, pady=5, relief='groove', bd=2)
+    def btn_run_click(self):
+        self.zf_run_func1()
 
-        label21 = tkinter.Label(frame21, text='자재청구서(PDF)', width=13, padx=5, pady=6, relief='groove')
-        label22 = tkinter.Label(frame21, text='홈디렉토리', width=13, padx=5, pady=6, relief='groove')
-        entry21 = tkinter.Label(frame22, width=50, padx=5, pady=6, relief='sunken', bg='white')
-        entry22 = tkinter.Label(frame22, width=50, padx=5, pady=6, relief='sunken', bg='white')
-        button21 = tkinter.Button(frame23, text="버튼", width=5, height=1, padx=5, pady=2,
-                                  command=lambda: self.command_args(self.arg1, self.arg2, self.arg3))
-        button12 = tkinter.Button(frame23, text="버튼", width=5, height=1, padx=5, pady=2,
-                                  command=lambda: self.command_args(self.arg1, self.arg2, self.arg3))
-        CheckVar21 = 0
-        CheckVar22 = 1
-        checkbutton21 = tkinter.Checkbutton(frame24, text='자동', height=1, padx=5, pady=3, variable=CheckVar21)
-        checkbutton22 = tkinter.Checkbutton(frame24, text='자동', height=1, padx=5, pady=3, variable=CheckVar22)
 
-        label31 = tkinter.Label(frame31, text='자재청구서', width=13, padx=5, pady=6, relief='groove')
-        label32 = tkinter.Label(frame31, text='Master(XLSX)', width=13, padx=5, pady=6, relief='groove')
-        entry31 = tkinter.Label(frame32, width=50, padx=5, pady=6, relief='sunken', bg='white')
-        entry32 = tkinter.Label(frame32, width=50, padx=5, pady=6, relief='sunken', bg='white')
-        button31 = tkinter.Button(frame33, text="버튼", width=5, height=1, padx=5, pady=2,
-                                  command=lambda: self.command_args(self.arg1, self.arg2, self.arg3))
-        button32 = tkinter.Button(frame33, text="버튼", width=5, height=1, padx=5, pady=2,
-                                  command=lambda: self.command_args(self.arg1, self.arg2, self.arg3))
-        CheckVar31 = 0
-        CheckVar32 = 1
-        checkbutton31 = tkinter.Checkbutton(frame34, text='자동', height=1, padx=5, pady=3, variable=CheckVar31)
-        checkbutton32 = tkinter.Checkbutton(frame34, text='자동', height=1, padx=5, pady=3, variable=CheckVar32)
+    def btn_run_func_a_click(self):
+        dircurr = self.dir_curr
 
-        label41 = tkinter.Label(frame41, text='템플릿', width=13, padx=5, pady=6, relief='groove')
-        label42 = tkinter.Label(frame41, text='자재요청서', width=13, padx=5, pady=6, relief='groove')
-        entry41 = tkinter.Label(frame42, width=50, padx=5, pady=6, relief='sunken', bg='white')
-        entry42 = tkinter.Label(frame42, width=50, padx=5, pady=6, relief='sunken', bg='white')
-        button41 = tkinter.Button(frame43, text="작성", width=5, height=1, padx=5, pady=2,
-                                  command=lambda: self.command_args(self.arg1, self.arg2, self.arg3))
-        button42 = tkinter.Button(frame43, text="버튼", width=5, height=1, padx=5, pady=2,
-                                  command=lambda: self.command_args(self.arg1, self.arg2, self.arg3))
-        CheckVar41 = 0
-        CheckVar42 = 1
-        checkbutton41 = tkinter.Checkbutton(frame44, text='자동', height=1, padx=5, pady=3, variable=CheckVar41)
-        checkbutton42 = tkinter.Checkbutton(frame44, text='자동', height=1, padx=5, pady=3, variable=CheckVar42)
+        # 파일을 형식 변경 ( PDF --> xlsx )
+        input_pdf  = self.dir_curr + '\\' + self.pdf_name + '.pdf'
+        output_xls = self.dir_curr + '\\' + self.conv1_name
+        output_xlsx = self.dir_curr + '\\' + self.xmast_name
 
-        label51 = tkinter.Label(frame51, text='템플릿', width=13, padx=5, pady=6, relief='groove')
-        label52 = tkinter.Label(frame51, text='불출요청서', width=13, padx=5, pady=6, relief='groove')
-        entry51 = tkinter.Label(frame52, width=50, padx=5, pady=6, relief='sunken', bg='white')
-        entry52 = tkinter.Label(frame52, width=50, padx=5, pady=6, relief='sunken', bg='white')
-        button51 = tkinter.Button(frame53, text="작성", width=5, height=1, padx=5, pady=2,
-                                  command=lambda: self.command_args(self.arg1, self.arg2, self.arg3))
-        button52 = tkinter.Button(frame53, text="버튼", width=5, height=1, padx=5, pady=2,
-                                  command=lambda: self.command_args(self.arg1, self.arg2, self.arg3))
-        CheckVar51 = 0
-        CheckVar52 = 1
-        checkbutton51 = tkinter.Checkbutton(frame54, text='자동', height=1, padx=5, pady=3, variable=CheckVar51)
-        checkbutton52 = tkinter.Checkbutton(frame54, text='자동', height=1, padx=5, pady=3, variable=CheckVar52)
+        func_a.zs_print_message(2, 'converting PDF -> xls')
 
-        frame10.pack(expand=True)
-        frame20.pack(expand=True)
-        frame30.pack(expand=True)
-        frame40.pack(expand=True)
-        frame50.pack(expand=True)
-        frame60.pack(expand=True)
+        #func_a.zf_pdf_2_xls(input_pdf, output_xls)
+        my_thread = threading.Thread(target=func_a.zf_pdf_2_xls, args=(input_pdf, output_xls,))
+        my_thread.start()
+        sval=''
+        while my_thread.is_alive():
+            sval = sval + '**'
+            self.label321.config(text=sval)
+            #print("*", end='')
+            time.sleep(0.0001)
+        #print('')
 
-        frame21.place(x=0, y=0)
-        frame22.place(x=140, y=0)
-        frame23.place(x=620, y=0)
-        frame24.place(x=700, y=0)
-        frame25.place(x=780, y=0)
-        frame31.place(x=0, y=0)
-        frame32.place(x=140, y=0)
-        frame33.place(x=620, y=0)
-        frame34.place(x=700, y=0)
-        frame35.place(x=780, y=0)
-        frame41.place(x=0, y=0)
-        frame42.place(x=140, y=0)
-        frame43.place(x=620, y=0)
-        frame44.place(x=700, y=0)
-        frame45.place(x=780, y=0)
-        frame51.place(x=0, y=0)
-        frame52.place(x=140, y=0)
-        frame53.place(x=620, y=0)
-        frame54.place(x=700, y=0)
-        frame55.place(x=780, y=0)
+        # 파일을 MS Excel 형식 변경 ( xls --> xlsx )
+        func_a.zs_print_message(2, 'converting xls -> xlsx')
+        result = func_a.zf_xls_2_xlsx(output_xls , output_xlsx)
 
-        label21 = label21.pack()
-        label22 = label22.pack()
-        entry21 = entry21.pack()
-        entry22 = entry22.pack()
-        button21 = button21.pack()
-        # button22 = button22.pack()
-        # checkbutton21 = checkbutton21.pack()
-        # checkbutton22 = checkbutton22.pack()
-        label31 = label31.pack()
-        label32 = label32.pack()
-        entry31 = entry31.pack()
-        entry32 = entry32.pack()
-        button31 = button31.pack()
-        # button32 = button32.pack()
-        checkbutton31 = checkbutton31.pack()
-        # checkbutton32 = checkbutton32.pack()
-        label41 = label41.pack()
-        label42 = label42.pack()
-        entry41 = entry41.pack()
-        entry42 = entry42.pack()
-        button41 = button41.pack()
-        # button42 = button42.pack()
-        checkbutton41 = checkbutton41.pack()
-        # checkbutton42 = checkbutton42.pack()
-        label51 = label51.pack()
-        label52 = label52.pack()
-        entry51 = entry51.pack()
-        entry52 = entry52.pack()
-        button51 = button51.pack()
-        # button52 = button52.pack()
-        checkbutton51 = checkbutton51.pack()
-        # checkbutton52 = checkbutton52.pack()
-        '''
-        button11 = tkinter.Button(frame2, text="버튼", width=5, height=1, command=lambda: self.command_args(self.arg1, self.arg2, self.arg3))
-        button11.pack(side='left', padx=1)
-        button11 = tkinter.Button(frame2, text="버튼", width=5, height=1, command=lambda: self.command_args(self.arg1, self.arg2, self.arg3))
-        button11.pack(side='left', padx=1)
-        '''
+        #subprocess(["python", "KMM1_MR01A.py"])
+
+
+    def btn_run_func_b_click(self):
+        dircurr = self.dir_curr
+
+        input_xlsx = self.dir_curr + '\\' + self.xmast_name
+        output_xlsx = self.dir_curr + '\\' + self.xdoc_b_name
+
+        # 파일 생성 (자재요청서)
+        func_b.zs_print_message(2, 'creating 반출요청서')
+        result = func_b.zf_create_carryout(input_xlsx, output_xlsx)
+
+
+    def btn_run_func_c_click(self):
+        dircurr = self.dir_curr
+
+        input_xlsx = self.dir_curr + '\\' + self.xmast_name
+        output_xlsx = self.dir_curr + '\\' + self.xdoc_c_name
+
+        # 파일 생성 (자재요청서)
+        func_c.zs_print_message(2, 'creating 자재요청서')
+        result = func_c.zf_create_mr(input_xlsx, output_xlsx)
+
+    def zf_close_wb_click(self):
+
+        list_wb = list()
+        list_wb.append(self.xmast_name)
+        list_wb.append(self.xdoc_b_name)
+        list_wb.append(self.xdoc_c_name)
+        list_wb.append(self.tmpl_b_name)
+        list_wb.append(self.tmpl_c_name)
+        list_wb.append('Tmpl_반출요청서.xlsx')
+
+        com_app = win32.dynamic.Dispatch('Excel.Application')
+        com_wbs = com_app.Workbooks
+        list_wb_names = [wb.Name for wb in com_wbs]
+
+        self.zs_print_message(2, f'closing {str(list_wb_names)}')
+
+        lcnt = com_wbs.Count
+        for i in reversed(range(lcnt)):
+            wb_name = com_wbs[i].Name
+
+            for wbnam in list_wb:
+                if wbnam in wb_name:
+                    self.zs_print_message(2, f'closed {wb_name}')
+                    com_wbs[i].Close(SaveChanges=False)
+        com_app.Quit()
+
+    def zf_load_file_pdf(self):
+        filename = filedialog.askopenfilename(initialdir="./", title="Select file",
+                                              filetypes=(("PDF files", "*.pdf"),
+                                                         ("all files", "*.*")))
+        return filename
+
+    def zs_print_message(self, a_sep, a_mesg):
+        now = '[' + datetime.now().strftime('%m/%d/%Y-%H:%M:%S') + ']'
+        if a_sep == 0:
+            print('==========================================================')
+
+        print(now, sys._getframe(1).f_code.co_name + "()", a_mesg, sep=':')
+
+        if a_sep == 9:
+            print('----------------------------------------------------------')
+
+
     def __main__(self):
-        self.zs_draw_screen()
+        print('qq')
+        #for i in tqdm(range(100), mininterval=1):
+        #    print(i, end='')
 
 
 if __name__ == '__main__':
-    window = tkinter.Tk()
+    window = tk.Tk()
     windows_tkinter(window)
     window.mainloop()
+
+
+    """
+    my_thread = threading.Thread(target =zf_pdf_2_xls, args=(input_pdf, output_xls,))
+    my_thread.start()
+
+    while my_thread.is_alive():
+        print(".", end='')
+        time.sleep(0.001)
+    print('')
+    """

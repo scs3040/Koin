@@ -3,8 +3,6 @@ import sys
 from datetime import datetime, timedelta
 from tkinter import filedialog
 import win32com.client as win32
-from tqdm import tqdm
-
 
 def zs_write_head(a_wss, a_wst):
     wss = a_wss
@@ -30,17 +28,16 @@ def zs_write_head(a_wss, a_wst):
     zs_xl_put_string(wst, 'A:ZZ', '{공사명}', '0,0', sval)
 
 
-def zf_create_carryout(input_xlsx):
+def zf_create_carryout(input_xlsx, output_xlsx):
     zs_print_message(0, 'starting ...')
-
-    file_dir = os.path.dirname(input_xlsx).replace("/", "\\")
-    file_name, file_ext = os.path.splitext(os.path.basename(input_xlsx))
 
     cur_dir = os.getcwd()
     #par_dir = os.path.abspath(os.path.join(cur_dir, os.pardir))
-    file_tmpl = cur_dir + "\\_Tmpl\\tmpl_반출요청서.xlsx"
+    file_tmpl = cur_dir + "\\_Tmpl\\_tmpl_반출요청서.xlsx"
 
-    output_xlsx = file_dir + "\\" + file_name + "_반출요청서.xlsx"
+    #file_dir = os.path.dirname(input_xlsx).replace("/", "\\")
+    #file_name, file_ext = os.path.splitext(os.path.basename(input_xlsx))
+    #output_xlsx = file_dir + "\\" + file_name + "_반출요청서.xlsx"
     try:
         os.remove(output_xlsx)
         zs_print_message(2, 'removed ' + output_xlsx)
@@ -76,7 +73,7 @@ def zf_create_carryout(input_xlsx):
     trowf = zf_get_last_row_from_column(wst, 'A') - 1
 
     trow = trows
-    for srow in tqdm(range(srows, srowf + 1), mininterval=1):
+    for srow in range(srows, srowf + 1):
         if int(wss.Cells(srow, 7).Value) == 0 :
             continue
 
@@ -167,7 +164,7 @@ def zf_xl_get_string(a_ws, a_rng,  a_name, a_offset):
     frng = a_ws.Range(a_rng).Find(a_name, LookAt=2)
     ofrow, ofcol = a_offset.split(',')
 
-    fcell = frng.GetOffset(ofrow, ofcol)
+    fcell = frng.GetOffset(int(ofrow), int(ofcol))
     return fcell.Value
 
 
@@ -175,13 +172,15 @@ def zs_xl_put_string(a_ws, a_rng,  a_name, a_offset, a_value):
     frng = a_ws.Range(a_rng).Find(a_name, LookAt=2)
     ofrow, ofcol = a_offset.split(',')
 
-    fcell = frng.GetOffset(ofrow, ofcol)
+    fcell = frng.GetOffset(int(ofrow), int(ofcol))
+    #frng.Cells(frng.Row + ofrow, frng.Column + ofcol).value = a_value
     fcell.Value = a_value
 
 
 import argparse, sys
 parser = argparse.ArgumentParser()
-parser.add_argument('-pdf' , help=' : Please set the input_pdf')
+parser.add_argument('-input', help=' : Please set the input_xlsx(mast)')
+parser.add_argument('-output', help=' : Please set the output_xlsx')
 
 args = parser.parse_args()
 
@@ -189,32 +188,40 @@ def main(argv, args):
     zs_print_message(0, 'Starting ...')
     zs_print_message(2, f'argv : {argv}')
     zs_print_message(2, f'args : {args}')
-
-    if args.pdf is None:
+    #-------------------------------------------------
+    if args.input is None:
         input_xlsx = zf_load_file()
     else:
-        input_xlsx = args.pdf
+        input_xlsx = args.input
 
     if input_xlsx == '' or input_xlsx is None:
         zs_print_message(9, 'cancel')
         sys.exit(1)
+    #-------------------------------------------------
+    if args.output is None:
+        file_dir = os.path.dirname(input_xlsx).replace("/", "\\")
+        file_name, file_ext = os.path.splitext(os.path.basename(input_xlsx))
+        output_xlsx = file_dir + "\\" + file_name + "_반출요청서.xlsx"
+    else :
+        output_xlsx = args.output
 
-    file_dir = os.path.dirname(input_xlsx).replace("/", "\\")
-    file_name, file_ext = os.path.splitext(os.path.basename(input_xlsx))
-    output_xlsx = file_dir + "\\" + file_name + "_반출요청서.xlsx"
-
+    #-------------------------------------------------
     list_wb = list()
     list_wb.append(file_name)
     list_wb.append('Tmpl_반출요청서.xlsx')
 
     zf_close_all_wb(list_wb)
 
+    #-------------------------------------------------
     # 파일 생성 - 자재요청서
-    zs_print_message(2, 'creating MR carry-out')
-    output_xlsx = zf_create_carryout(input_xlsx)
+    zs_print_message(2, 'creating _반출요청서')
+    output_xlsx = zf_create_carryout(input_xlsx, output_xlsx)
 
+    #-------------------------------------------------
     zs_print_message(9, 'finshed')
 
+
+#=====================================================
 if __name__ == "__main__":
     argv = sys.argv
     main(argv, args)

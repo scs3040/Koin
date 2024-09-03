@@ -6,7 +6,6 @@ from tkinter import filedialog
 import aspose.pdf as ap
 
 import win32com.client as win32
-from tqdm import tqdm
 #import xlwings as xw
 
 #import threading
@@ -48,16 +47,15 @@ def zs_set_sheet_style(a_worksheet, a_range ):
     zs_print_message(2, 'finished')
 
 
-def zf_create_mr(input_xlsx):
+def zf_create_mr(input_xlsx, output_xlsx):
     zs_print_message(0, 'starting ...')
 
-    file_dir = os.path.dirname(input_xlsx).replace("/", "\\")
-    file_name, file_ext = os.path.splitext(os.path.basename(input_xlsx))
-
     curr_dir = os.getcwd()
-    file_tmpl = curr_dir + "\\_Tmpl\\tmpl_자재요청서.xlsx"
+    file_tmpl = curr_dir + "\\_Tmpl\\_tmpl_자재요청서.xlsx"
 
-    output_xlsx = file_dir + "\\" + file_name + "_자재요청서.xlsx"
+    #file_dir = os.path.dirname(input_xlsx).replace("/", "\\")
+    #file_name, file_ext = os.path.splitext(os.path.basename(input_xlsx))
+    #output_xlsx = file_dir + "\\" + file_name + "_자재요청서.xlsx"
 
     excel_app = win32.gencache.EnsureDispatch("Excel.Application")
     try:
@@ -86,7 +84,7 @@ def zf_create_mr(input_xlsx):
     trowf = zf_get_last_row_from_column(wst, 'A')
 
     trow = trows
-    for srow in tqdm(range(srows, srowf + 1), mininterval= 1):
+    for srow in range(srows, srowf + 1):
         if int(wss.Cells(srow, 7).Value) == 0 :
             continue
 
@@ -131,6 +129,7 @@ def zs_write_head(a_wss, a_wst):
     zs_xl_put_string(wst, 'A:ZZ', '{불출일자}', '0,0', sval)
 
     sval = zf_xl_get_string(wss, 'A:ZZ', '청구담당', '0,2')
+    sval = sval + " 감독님"
     zs_xl_put_string(wst, 'A:ZZ', '{담당자}', '0,0', sval)
 
     sval = zf_xl_get_string(wss, 'A:ZZ', '공사번호', '0,1')
@@ -140,7 +139,7 @@ def zf_xl_get_string(a_ws, a_rng,  a_name, a_offset):
     frng = a_ws.Range(a_rng).Find(a_name, LookAt=2)
     ofrow, ofcol = a_offset.split(',')
 
-    fcell = frng.GetOffset(ofrow, ofcol)
+    fcell = frng.GetOffset(int(ofrow), int(ofcol))
     return fcell.Value
 
 
@@ -148,7 +147,7 @@ def zs_xl_put_string(a_ws, a_rng,  a_name, a_offset, a_value):
     frng = a_ws.Range(a_rng).Find(a_name, LookAt=2)
     ofrow, ofcol = a_offset.split(',')
 
-    fcell = frng.GetOffset(ofrow, ofcol)
+    fcell = frng.GetOffset(int(ofrow), int(ofcol))
     fcell.Value = a_value
 
 
@@ -218,7 +217,8 @@ def zf_close_all_wb(alist_wbname):
 
 import argparse, sys
 parser = argparse.ArgumentParser()
-parser.add_argument('-pdf' , help=' : Please set the input_pdf')
+parser.add_argument('-input', help=' : Please set the input_xlsx')
+parser.add_argument('-output', help=' : Please set the output_xlsx')
 
 args = parser.parse_args()
 
@@ -227,19 +227,27 @@ def main(argv, args):
     zs_print_message(0, 'Starting ...')
     zs_print_message(2, f'argv : {argv}')
     zs_print_message(2, f'args : {args}')
-
-    if args.pdf is None:
+    #--------------------------------------------
+    if args.input is None:
         input_xlsx = zf_load_file()
     else:
-        input_xlsx = args.pdf
+        input_xlsx = args.input
 
     if input_xlsx == '' or input_xlsx is None:
         zs_print_message(9, 'cancel')
         sys.exit(1)
+    #--------------------------------------------
+    if args.output in None:
+        output_xlsx = ''
+    else:
+        output_xlsx = args_output
 
-    file_dir = os.path.dirname(input_xlsx).replace("/", "\\")
-    file_name, file_ext = os.path.splitext(os.path.basename(input_xlsx))
-    output_xls = file_dir + "\\" + file_name + ".xlsx"
+    if output_xlsx == '' or output_xlsx in None:
+        file_dir = os.path.dirname(input_xlsx).replace("/", "\\")
+        file_name, file_ext = os.path.splitext(os.path.basename(input_xlsx))
+
+        output_xls = file_dir + "\\" + file_name + ".xlsx"
+        output_xlsx = file_dir + "\\" + file_name + "_자재요청서.xlsx"
 
     list_wb = list()
     list_wb.append(file_name)
@@ -259,7 +267,7 @@ def main(argv, args):
 
     # 파일 생성 - 자재요청서
     zs_print_message(2, 'creating MR')
-    output_xlsx = zf_create_mr(input_xlsx)
+    result = zf_create_mr(input_xlsx, output_xlsx)
 
     zs_print_message(9, 'finshed')
 

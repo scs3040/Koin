@@ -6,7 +6,6 @@ from tkinter import filedialog
 import aspose.pdf as ap
 
 import win32com.client as win32
-from tqdm import tqdm
 
 #import threading
 
@@ -29,19 +28,21 @@ def zf_save_file():
     return filename
 
 
-def zf_xls_2_xlsx(input_xls):
+def zf_xls_2_xlsx(input_xls, output_xlsx):
     zs_print_message(0, 'Starting ...')
 
-    file_dir = os.path.dirname(input_xls).replace("/", "\\")
-    file_name, file_ext = os.path.splitext(os.path.basename(input_xls))
-    output_xlsx = file_dir + "\\" + file_name + "_1.xlsx"
+    #file_dir = os.path.dirname(input_xls).replace("/", "\\")
+    #file_name, file_ext = os.path.splitext(os.path.basename(input_xls))
+    #output_xlsx = file_dir + "\\" + file_name + "_1.xlsx"
+    #os.remove(output_xlsx)
     try:
         os.remove(output_xlsX)
         zs_print_message(2, 'removed ' + output_xlsx)
     except:
         zs_print_message(2, 'file not found ' + output_xlsx)
 
-    zs_print_message(2, 'open PDF ' + input_xls)
+    zs_print_message(2, 'open XLS ' + input_xls)
+
     excel_app = win32.gencache.EnsureDispatch("Excel.Application")
     try:
         wb = excel_app.Workbooks.Open(input_xls, Notify=False)
@@ -59,7 +60,7 @@ def zf_xls_2_xlsx(input_xls):
         wb.SaveAs(output_xlsx, FileFormat=51)
         excel_app.DisplayAlerts = True
     except:
-        print_message(9, 'save cancel ')
+        zs_print_message(9, 'save cancel ')
         wb.Close(False)
         excel_app.Application.Quit()
         sys.exit(1)
@@ -80,8 +81,7 @@ def zs_merge_sheet(a_workbook):
 
     wscnt = wb.Sheets.Count
     wst = wb.Sheets(1)
-    for i in tqdm(range(2, wscnt + 1), mininterval=1):
-
+    for i in range(2, wscnt + 1):
         wss = wb.Sheets(i)
 
         lastrow = wst.UsedRange.Rows.Count
@@ -220,21 +220,22 @@ def main(argv, args):
     zs_print_message(2, f'args : {args}')
 
     if args.pdf is None:
-        input_xlsx = zf_load_file()
+        input_pdf = zf_load_file()
     else:
-        input_xlsx = args.pdf
+        input_pdf = args.pdf
 
-    if input_xlsx == '' or input_xlsx is None:
+    if input_pdf == '' or input_pdf is None:
         zs_print_message(9, 'cancel')
         sys.exit(1)
 
     file_dir = os.path.dirname(input_pdf).replace("/", "\\")
     file_name, file_ext = os.path.splitext(os.path.basename(input_pdf))
-    output_xls = file_dir + "\\" + file_name + ".xls"
+    output_xls = file_dir + "\\" + file_name + "_cnv1.xls"
+    output_xlsx = file_dir + "\\" + file_name + "_mast.xlsx"
 
     list_wb = list()
     list_wb.append(file_name)
-    list_wb.append('Tmpl_자재요청서.xlsx')
+    list_wb.append('_Tmpl_자재요청서.xlsx')
 
     zf_close_all_wb(list_wb)
 
@@ -256,8 +257,8 @@ def main(argv, args):
     """
     # 파일을 MS Excel 형식 변경 ( xls --> xlsx )
     zs_print_message(2, 'converting xls -> xlsx')
-    input_xls = output_xls
-    output_xlsx = zf_xls_2_xlsx(input_xls)
+    input_xls  = output_xls
+    output_xlsx = zf_xls_2_xlsx(input_xls, output_xlsx)
 
     try:
         os.remove(input_xls)
