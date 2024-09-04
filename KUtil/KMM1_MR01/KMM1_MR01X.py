@@ -15,8 +15,8 @@ import KMM1_MR01C as func_c
 class windows_tkinter:
     def __init__(self, window):
         self.window = window
-        self.window.title("자재청구(반출) 요청서 생성")
-        self.window.geometry("670x300+100+100")
+        self.window.title("자재 요청서 생성")
+        #self.window.geometry("670x300+100+100")
         self.window.resizable(False, False)
 
         self.dir_home = os.getcwd().replace("/", "\\")
@@ -36,73 +36,74 @@ class windows_tkinter:
         self.CheckVar41 = True
         self.CheckVar51 = True
 
-        self.frame10 = tk.Frame(self.window, width=750, height=60, padx=4, pady=4, relief='groove', bd=2)
+        self.frame10 = tk.Frame(self.window, width=750, height=60,  padx=4, pady=6, relief='raised', bd=2, bg='black')
         self.frame20 = tk.Frame(self.window, width=750, height=100, padx=4, pady=4, relief='groove', bd=2)
         self.frame30 = tk.Frame(self.window, width=750, height=100, padx=4, pady=4, relief='groove', bd=2)
         self.frame40 = tk.Frame(self.window, width=750, height=100, padx=4, pady=4, relief='groove', bd=2)
         self.frame90 = tk.Frame(self.window, width=750, height=200, padx=4, pady=4, relief='groove', bd=2)
 
-        self.frame11 = tk.Frame(self.frame10, padx=2, pady=2, relief='groove', bd=2)
+        self.frame11 = tk.Frame(self.frame10, padx=2, pady=0,  bd=0, bg='black')
+        self.frame12 = tk.Frame(self.frame10, padx=2, pady=0,  bd=0, bg='black')
 
-        self.frame21 = tk.Frame(self.frame20, padx=2, pady=2, relief='groove', bd=2)
-        self.frame22 = tk.Frame(self.frame20, padx=2, pady=2, relief='groove', bd=2)
-        self.frame23 = tk.Frame(self.frame20, padx=2, pady=2, relief='groove', bd=2)
-        self.frame24 = tk.Frame(self.frame20, padx=2, pady=2, relief='groove', bd=2)
+        self.frame21 = tk.Frame(self.frame20, padx=2, pady=2, bd=2)
+        self.frame22 = tk.Frame(self.frame20, padx=2, pady=2, bd=2)
+        self.frame23 = tk.Frame(self.frame20, padx=2, pady=2, bd=2)
+        self.frame24 = tk.Frame(self.frame20, padx=2, pady=2, bd=2)
 
-        self.frame31 = tk.Frame(self.frame30, padx=2, pady=2, relief='groove', bd=2)
-        self.frame32 = tk.Frame(self.frame30, padx=2, pady=2, relief='groove', bd=2)
-        self.frame33 = tk.Frame(self.frame30, padx=2, pady=2, relief='groove', bd=2)
-        self.frame34 = tk.Frame(self.frame30, padx=2, pady=2, relief='groove', bd=2)
+        self.frame31 = tk.Frame(self.frame30, padx=2, pady=2, bd=2)
+        self.frame32 = tk.Frame(self.frame30, padx=2, pady=2, bd=2)
+        self.frame33 = tk.Frame(self.frame30, padx=2, pady=2, bd=2)
+        self.frame34 = tk.Frame(self.frame30, padx=2, pady=2, bd=2)
 
-        self.frame41 = tk.Frame(self.frame40, padx=2, pady=2, relief='groove', bd=2)
-        self.frame42 = tk.Frame(self.frame40, padx=2, pady=2, relief='groove', bd=2)
-        self.frame43 = tk.Frame(self.frame40, padx=2, pady=2, relief='groove', bd=2)
-        self.frame44 = tk.Frame(self.frame40, padx=2, pady=2, relief='groove', bd=2)
-        self.frame45 = tk.Frame(self.frame40, padx=2, pady=2, relief='groove', bd=2)
+        self.frame41 = tk.Frame(self.frame40, padx=2, pady=2, bd=2)
+        self.frame42 = tk.Frame(self.frame40, padx=2, pady=2, bd=2)
+        self.frame43 = tk.Frame(self.frame40, padx=2, pady=2, bd=2)
+        self.frame44 = tk.Frame(self.frame40, padx=2, pady=2, bd=2)
+        self.frame45 = tk.Frame(self.frame40, padx=2, pady=2, bd=2)
 
-        self.label110 = tk.Label(self.frame11, text='자재청구(불출) 요청서 생성', padx=1, pady=1, relief='groove', font=("Arial", 15))
-        self.button11 = tk.Button(self.frame11, text="SOS", width=8, height=1, padx=1, pady=1,
+        self.label110 = tk.Label(self.frame11, text='자재 요청서 생성', width=27,  padx=24, pady=3, font=('Impact 17', 17, 'bold'), fg='white', bg='black')
+        self.label111 = tk.Label(self.frame11, text='',              width=10,           padx=4, pady=3,                                  bg='black')
+        self.button11 = tk.Button(self.frame12, text="SOS",          width=10, height=1, padx=4, pady=0,
                             command=lambda: self.zf_close_wb_click())
-        self.button12 = tk.Button(self.frame11, text="Check", width=8, height=1, padx=1, pady=1,
+        self.button12 = tk.Button(self.frame12, text="isExist",      width=10, height=1, padx=4, pady=0,
                             command=lambda: self.zs_check_file_click())
-        self.label111 = tk.Label(self.frame11, text='', width=4, padx=4, pady=5, relief='groove')
 
-        self.label210 = tk.Label(self.frame21, text='자재청구서(PDF)', width=14,           padx=4, pady=2, relief='groove')
+        self.label210 = tk.Label(self.frame21, text='자재청구서(PDF)', width=14,           padx=4, pady=2)
         self.entry210 = tk.Entry(self.frame22,                       width=50,                           relief='sunken', bg='white')
-        self.label211 = tk.Label(self.frame23, text='    ',          width=2,            padx=4, pady=2, relief='groove')
-        self.button21 = tk.Button(self.frame24, text="PDF선택",       width=14, height=2, padx=4, pady=0,
+        self.label211 = tk.Label(self.frame23, text='    ',          width=2,            padx=4, pady=2, relief='raised')
+        self.button21 = tk.Button(self.frame24, text="자재청구서 선택",       width=14, height=2, padx=4, pady=0,
                             command=lambda: self.btn_run_click('0'))
-        self.label220 = tk.Label(self.frame21, text='작업폴더',        width=14,           padx=4, pady=2, relief='groove')
+        self.label220 = tk.Label(self.frame21, text='작업폴더',        width=14,           padx=4, pady=2)
         self.entry220 = tk.Entry(self.frame22,                       width=50,                            relief='sunken', bg='white')
-        self.label221 = tk.Label(self.frame23, text='     ',          width=2,            padx=4, pady=2, relief='groove')
+        self.label221 = tk.Label(self.frame23, text='     ',          width=2,            padx=4, pady=2, relief='raised')
         self.button22 = tk.Button(self.frame24, text="---",           width=14, height=2, padx=4, pady=0,
                             command=lambda: self.btn_run_click('0'))
 
-        self.label310 = tk.Label (self.frame31, text='변환(PDF->XLS)', width=14,           padx=4, pady=2, relief='groove')
-        self.entry310 = tk.Entry (self.frame32,                        width=50,                           relief='sunken', bg='white')
-        self.label311 = tk.Label (self.frame33, text='      ',         width=2,            padx=4, pady=2, relief='groove')
-        self.button31 = tk.Button(self.frame34, text="PDF2XLS",  width=14, height=2, padx=4, pady=0,
+        self.label310 = tk.Label (self.frame31, text='변환(PDF->XLS)', width=14,           padx=4, pady=2, justify='right')
+        self.entry310 = tk.Entry (self.frame32,                        width=50,                           relief='sunken')
+        self.label311 = tk.Label (self.frame33, text='      ',         width=2,            padx=4, pady=2, relief='raised')
+        self.button31 = tk.Button(self.frame34, text="변환(pdf2xls)",  width=14, height=2, padx=4, pady=0,
                             command=lambda: self.btn_run_click('A'))
-        self.label320  = tk.Label (self.frame31, text='자재청구서',   width=14,           padx=4, pady=2, relief='groove')
+        self.label320  = tk.Label (self.frame31, text='자재청구서',       width=14,           padx=4, pady=2, justify='right')
         self.entry320  = tk.Entry (self.frame32,                        width=50,                           relief='sunken', bg='white')
-        self.label321  = tk.Label (self.frame33, text='      ',         width=2,            padx=4, pady=2, relief='groove')
+        self.label321  = tk.Label (self.frame33, text='      ',         width=2,            padx=4, pady=2, relief='raised')
         self.button32  = tk.Button(self.frame34, text="---",            width=14, height=2, padx=4, pady=0,
                             command=lambda: self.btn_run_click('A'))
 
-        self.label410  = tk.Label(self.frame41, text='반출요청서',        width=14,           padx=4, pady=2, relief='groove')
-        self.entry410  = tk.Entry(self.frame42,                         width=50,                          relief='sunken', bg='white')
-        self.label411  = tk.Label(self.frame43, text='      ',          width=2,            padx=4, pady=2, relief='groove')
-        self.button410 = tk.Button(self.frame44, text="작성",            width=5, height=1, padx=4, pady=0,
+        self.label410  = tk.Label(self.frame41, text='반출요청서',        width=14,           padx=4, pady=2, justify='right')
+        self.entry410  = tk.Entry(self.frame42,                         width=50,                           relief='sunken', bg='white')
+        self.label411  = tk.Label(self.frame43, text='      ',          width=2,            padx=4, pady=2, relief='raised')
+        self.button410 = tk.Button(self.frame44, text="작성",            width=5, height=1,  padx=4, pady=0,
                             command=lambda: self.btn_run_click('B'))
-        self.button411 = tk.Button(self.frame45, text="열기",            width=5, height=1, padx=4, pady=0,
+        self.button411 = tk.Button(self.frame45, text="열기",            width=6, height=1,  padx=4, pady=0,
                             command=lambda: self.btn_run_func_b_click())
 
-        self.label420  = tk.Label(self.frame41, text='자재요청서',        width=14,           padx=4, pady=2, relief='groove')
-        self.entry420  = tk.Entry(self.frame42,                         width=50,                          relief='sunken', bg='white')
-        self.label421 = tk.Label(self.frame43, text='      ',          width=2,            padx=4, pady=2, relief='groove')
-        self.button420 = tk.Button(self.frame44, text="작성",            width=5, height=1, padx=4, pady=0,
+        self.label420  = tk.Label(self.frame41, text='자재요청서',        width=14,           padx=4, pady=2, justify='right')
+        self.entry420  = tk.Entry(self.frame42,                         width=50,                           relief='sunken', bg='white')
+        self.label421 = tk.Label(self.frame43, text='      ',           width=2,            padx=4, pady=2, relief='raised')
+        self.button420 = tk.Button(self.frame44, text="작성",            width=5, height=1,  padx=4, pady=2,
                             command=lambda: self.btn_run_click('C'))
-        self.button421 = tk.Button(self.frame45, text="열기",            width=5, height=1, padx=4, pady=0,
+        self.button421 = tk.Button(self.frame45, text="열기",            width=6, height=1,  padx=4, pady=2,
                             command=lambda: self.btn_run_func_c_click())
 
         self.frame10.pack(expand=True)
@@ -111,7 +112,8 @@ class windows_tkinter:
         self.frame40.pack(expand=True)
         #self.frame90.pack(expand=True)
 
-        self.frame11.pack(expand=True)
+        self.frame11.pack(side='left')
+        self.frame12.pack(side='left')
 
         self.frame21.pack(side='left')
         self.frame22.pack(side='left')
@@ -130,31 +132,31 @@ class windows_tkinter:
         self.frame45.pack(side='left')
 
         self.label110.pack(side='left')
+        self.label111.pack(side='left')
         self.button11.pack(side='right')
         self.button12.pack(side='right')
-        self.label111.pack(side='left')
         #self.button12.pack(side='right')
 
-        self.label210.pack()
+        self.label210.pack(anchor='w')
         self.entry210.pack(ipadx=2, ipady=2)
         self.label211.pack()
         self.button21.pack()
 
-        self.label220.pack()
+        self.label220.pack(anchor='w')
         self.entry220.pack(ipadx=2, ipady=2)
         self.label221.pack()
         #self.button22.pack(side='left')
 
-        self.label310.pack()
+        self.label310.pack(anchor='w')
         self.entry310.pack(ipadx=2, ipady=2)
         self.label311.pack()
         self.button31.pack()
 
-        self.label320.pack()
+        self.label320.pack(anchor='w')
         self.entry320.pack(ipadx=2, ipady=2)
         self.label321.pack()
 
-        self.label410.pack()
+        self.label410.pack(anchor='w')
         self.entry410.pack(ipadx=2, ipady=2)
         self.label411.pack()
         self.button410.pack()
@@ -174,6 +176,8 @@ class windows_tkinter:
         if selfunc == '0':
             self.label211.config(bg=bgcolor)
             self.label211.update()
+            self.label221.config(bg=bgcolor)
+            self.label221.update()
             self.btn_get_file_pdf_click()
             #my_thread = threading.Thread(target=self.btn_get_file_pdf_click)
 
@@ -288,6 +292,8 @@ class windows_tkinter:
         if os.path.isfile(pdfnam): bgcolor = 'green'
         self.label211.config(bg=bgcolor)
         self.label211.update
+        self.label221.config(bg=bgcolor)
+        self.label221.update
 
         bgcolor = 'red'
         if os.path.isfile(xcnv1): bgcolor = 'green'
@@ -358,7 +364,8 @@ class windows_tkinter:
 
     def __main__(self):
 
-        print('qq')
+        func_c.zs_print_message(0, f' Welcome !!!')
+        func_c.zs_print_message(9, f' ')
         #for i in tqdm(range(100), mininterval=1):
         #    print(i, end='')
 
