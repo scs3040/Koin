@@ -63,7 +63,7 @@ def zf_create_mr(input_xlsx, output_xlsx):
         wbs = excel_app.Workbooks.Open(input_xlsx)
         zs_print_message(2, f'open........... {input_xlsx}')
     except:
-        wbs.Close(SaveChanges=False)
+        #wbs.Close(SaveChanges=False)
         excel_app.Application.Quit()
         zs_print_message(2, f'open Fail...... ')
         sys.exit(1)
