@@ -35,42 +35,44 @@ def zs_write_head(a_wss, a_wst):
 def zf_create_carryout(input_xlsx, output_xlsx):
     zs_print_message(0, f'starting ......')
 
-    cur_dir = os.getcwd()
-    #par_dir = os.path.abspath(os.path.join(cur_dir, os.pardir))
-    file_tmpl = cur_dir + "\\_Tmpl\\_tmpl_반출요청서.xlsx"
+    dir_curr = os.getcwd()
+    file_tmpl = dir_curr + "\\_Tmpl\\_tmpl_반출요청서.xlsx"
 
-    #file_dir = os.path.dirname(input_xlsx).replace("/", "\\")
-    #file_name, file_ext = os.path.splitext(os.path.basename(input_xlsx))
-    #output_xlsx = file_dir + "\\" + file_name + "_반출요청서.xlsx"
+
     try:
         os.remove(output_xlsx)
     except:
         zs_print_message(2, f'file not found  {output_xlsx}')
-        zs_print_message(2, f'open .......... {output_xlsx}')
 
     excel_app = win32.gencache.EnsureDispatch("Excel.Application")
 
     try:
         wbs = excel_app.Workbooks.Open(input_xlsx)
         zs_print_message(2, f'open .......... {output_xlsx}')
-
     except:
-        wbs.Close(SaveChanges=False)
         excel_app.Application.Quit()
-
         zs_print_message(2, f'open Fail .....')
-
-        sys.exit(1)
+        return -1
 
     try:
         wbt = excel_app.Workbooks.Open(file_tmpl)
-        zs_print_message(2, f'open Tmpl ..... {file_tmpl}')
+        zs_print_message(2, f'open Template.. {file_tmpl}')
     except:
         wbs.Close(SaveChanges=False)
-        wbt.Close(SaveChanges=False)
         excel_app.Application.Quit()
-        zs_print_message(2, f'open Fai l.....')
-        sys.exit(1)
+        zs_print_message(2, f'open Fail...... ')
+        return -1
+
+    try:
+        zs_print_message(2, f'create ........ {output_xlsx}')
+        excel_app.DisplayAlerts = False
+        wbt.SaveAs(output_xlsx, FileFormat=51)
+        excel_app.DisplayAlerts = True
+    except:
+        wbs.Close(SaveChanges=False)
+        excel_app.Application.Quit()
+        zs_print_message(2, f'create Fail.... ')
+        return -1
 
     zs_write_head(wbs.Sheets(1), wbt.Sheets(1))
 
@@ -90,7 +92,7 @@ def zf_create_carryout(input_xlsx, output_xlsx):
             continue
 
         trow = trow + 1
-        wst.Cells(trow, 1).Value = "=row()-11"
+        wst.Cells(trow, 1).Value = '=row()-11'
         tmp_str = wss.Cells(srow, 1).Value
         wst.Cells(trow, 3).Value = tmp_str.replace('-', '')
         wst.Cells(trow, 7).Value = wss.Cells(srow, 2).Value
@@ -102,22 +104,19 @@ def zf_create_carryout(input_xlsx, output_xlsx):
     wst.Range("A1").Select()
 
     try:
-        excel_app.DisplayAlerts = False
-        wbt.SaveAs(output_xlsx, FileFormat=51)
-        excel_app.DisplayAlerts = True
+        wbt.Save()
         zs_print_message(2, f'saved ......... {output_xlsx}')
-
     except:
         wbt.Close(False)
         excel_app.Application.Quit()
-        zs_print_message(0, f'save cancel ..')
-        sys.exit(1)
+        zs_print_message(0, f'save cancel ... {output_xlsx}')
+        return -1
 
     wbs.Close(False)
     wbt.Close()
     excel_app.Application.Quit()
 
-    zs_print_message(9, 'finished')
+    zs_print_message(9, 'finished........')
 
     return output_xlsx
 

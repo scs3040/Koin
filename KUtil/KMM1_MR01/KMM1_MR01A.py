@@ -101,6 +101,7 @@ def zs_merge_sheet(a_workbook):
         wst.Cells(lastrow, 1).Select()
         wst.Paste()
         wst.Cells(1, 1).Value = ''
+        wst.Range("A1").Select()
 
     zs_print_message(2, 'finished')
     zs_set_sheet_style(wst, "A:Z")

@@ -54,33 +54,43 @@ def zf_create_mr(input_xlsx, output_xlsx):
     curr_dir = os.getcwd()
     file_tmpl = curr_dir + "\\_Tmpl\\_tmpl_자재요청서.xlsx"
 
-    #file_dir = os.path.dirname(input_xlsx).replace("/", "\\")
-    #file_name, file_ext = os.path.splitext(os.path.basename(input_xlsx))
-    #output_xlsx = file_dir + "\\" + file_name + "_자재요청서.xlsx"
+    try:
+        os.remove(output_xlsx)
+    except:
+        zs_print_message(2, f'file not found  {output_xlsx}')
 
     excel_app = win32.gencache.EnsureDispatch("Excel.Application")
+
     try:
         wbs = excel_app.Workbooks.Open(input_xlsx)
-        zs_print_message(2, f'open........... {input_xlsx}')
+        zs_print_message(2, f'open input .... {input_xlsx}')
     except:
-        #wbs.Close(SaveChanges=False)
         excel_app.Application.Quit()
         zs_print_message(2, f'open Fail...... ')
-        sys.exit(1)
+        return -1
 
     try:
         wbt = excel_app.Workbooks.Open(file_tmpl)
-        zs_print_message(2, f'open........... {file_tmpl}')
+        zs_print_message(2, f'open Template.. {file_tmpl}')
     except:
         wbs.Close(SaveChanges=False)
-        wbt.Close(SaveChanges=False)
         excel_app.Application.Quit()
         zs_print_message(2, f'open Fail...... ')
-        sys.exit(1)
+        return -1
+
+    try:
+        zs_print_message(2, f'create ........ {output_xlsx}')
+        excel_app.DisplayAlerts = False
+        wbt.SaveAs(output_xlsx, FileFormat=51)
+        excel_app.DisplayAlerts = True
+    except:
+        wbs.Close(SaveChanges=False)
+        #wbt.Close(SaveChanges=False)
+        excel_app.Application.Quit()
+        zs_print_message(2, f'create Fail.... ')
+        return -1
 
     zs_write_head(wbs.Sheets(1), wbt.Sheets(1))
-
-    zs_print_message(2, f'creating ...... {output_xlsx}')
 
     wss = wbs.Sheets(1)
     srows = wss.Range("A:A").Find('품번', LookAt=1).Row + 1
@@ -108,15 +118,13 @@ def zf_create_mr(input_xlsx, output_xlsx):
     wst.Range("A1").Select()
 
     try:
-        excel_app.DisplayAlerts = False
-        wbt.SaveAs(output_xlsx, FileFormat=51)
-        excel_app.DisplayAlerts = True
+        wbt.Save()
         zs_print_message(2, f'saved ......... {output_xlsx}')
     except:
         wbt.Close(False)
         excel_app.Application.Quit()
         zs_print_message(0, f'save cancel ... {output_xlsx}')
-        sys.exit(1)
+        return -1
 
     wbs.Close()
     wbt.Close()
@@ -272,7 +280,8 @@ def main(argv, args):
     # 파일 생성 - 자재요청서
     zs_print_message(2, 'creating ....... _자재요청서')
     result = zf_create_mr(input_xlsx, output_xlsx)
-    zs_print_message(2, f'create success! _자재요청서')
+    if not result == -1:
+        zs_print_message(2, f'create success! _자재요청서')
 
     #-------------------------------------------------
     zs_print_message(9, 'finshed ........')

@@ -19,9 +19,9 @@ class windows_tkinter:
         #self.window.geometry("670x300+100+100")
         self.window.resizable(False, False)
 
-        self.dir_home = os.getcwd().replace("/", "\\")
-        self.dir_bin  = self.dir_home + "\\_bin"
-        self.dir_tmpl = self.dir_home + "\\_tmpl"
+        self.dir_base = os.getcwd().replace("/", "\\")
+        self.dir_bin  = self.dir_base + "\\_bin"
+        self.dir_tmpl = self.dir_base + "\\_tmpl"
         self.dir_curr = os.getcwd().replace("/", "\\")
         self.pdf_name = ''
         self.conv1_name = ''
@@ -49,11 +49,13 @@ class windows_tkinter:
         self.frame22 = tk.Frame(self.frame20, padx=2, pady=2, bd=2)
         self.frame23 = tk.Frame(self.frame20, padx=2, pady=2, bd=2)
         self.frame24 = tk.Frame(self.frame20, padx=2, pady=2, bd=2)
+        self.frame25 = tk.Frame(self.frame20, padx=2, pady=2, bd=2)
 
         self.frame31 = tk.Frame(self.frame30, padx=2, pady=2, bd=2)
         self.frame32 = tk.Frame(self.frame30, padx=2, pady=2, bd=2)
         self.frame33 = tk.Frame(self.frame30, padx=2, pady=2, bd=2)
         self.frame34 = tk.Frame(self.frame30, padx=2, pady=2, bd=2)
+        self.frame35 = tk.Frame(self.frame30, padx=2, pady=2, bd=2)
 
         self.frame41 = tk.Frame(self.frame40, padx=2, pady=2, bd=2)
         self.frame42 = tk.Frame(self.frame40, padx=2, pady=2, bd=2)
@@ -61,34 +63,38 @@ class windows_tkinter:
         self.frame44 = tk.Frame(self.frame40, padx=2, pady=2, bd=2)
         self.frame45 = tk.Frame(self.frame40, padx=2, pady=2, bd=2)
 
-        self.label110 = tk.Label(self.frame11, text='자재 요청서 생성', width=27,  padx=24, pady=3, font=('Impact 17', 17, 'bold'), fg='white', bg='black')
-        self.label111 = tk.Label(self.frame11, text='',              width=10,           padx=4, pady=3,                                  bg='black')
-        self.button11 = tk.Button(self.frame12, text="SOS",          width=10, height=1, padx=4, pady=0,
-                            command=lambda: self.zf_close_wb_click())
-        self.button12 = tk.Button(self.frame12, text="isExist",      width=10, height=1, padx=4, pady=0,
-                            command=lambda: self.zs_check_file_click())
+        self.label110  = tk.Label (self.frame11, text='자재 요청서 생성', width=27,           padx=24, pady=3, font=('Impact 17', 17, 'bold'), fg='white', bg='black')
+        self.label111  = tk.Label (self.frame11, text='',                 width=4,           padx=4, pady=3,                                  bg='black')
+        self.button11  = tk.Button(self.frame12, text="SOS",              width=6, height=1, padx=4, pady=0,
+                                                 command=lambda: self.zf_close_wb_click())
+        self.button12  = tk.Button(self.frame12, text="isExist",          width=6, height=1, padx=4, pady=0,
+                                                 command=lambda: self.zs_check_file_click(self.dir_curr))
+        self.button13  = tk.Button(self.frame12, text="종료",          width=6, height=1, padx=4, pady=0,
+                                                 command=lambda: self. zs_quit_click())
 
-        self.label210 = tk.Label(self.frame21, text='자재청구서(PDF)', width=14,           padx=4, pady=2)
-        self.entry210 = tk.Entry(self.frame22,                       width=50,                           relief='sunken', bg='white')
-        self.label211 = tk.Label(self.frame23, text='    ',          width=2,            padx=4, pady=2, relief='raised')
-        self.button21 = tk.Button(self.frame24, text="자재청구서 선택",       width=14, height=2, padx=4, pady=0,
-                            command=lambda: self.btn_run_click('0'))
-        self.label220 = tk.Label(self.frame21, text='작업폴더',        width=14,           padx=4, pady=2)
-        self.entry220 = tk.Entry(self.frame22,                       width=50,                            relief='sunken', bg='white')
-        self.label221 = tk.Label(self.frame23, text='     ',          width=2,            padx=4, pady=2, relief='raised')
-        self.button22 = tk.Button(self.frame24, text="---",           width=14, height=2, padx=4, pady=0,
-                            command=lambda: self.btn_run_click('0'))
+        self.label210  = tk.Label (self.frame21, text='자재청구서(PDF)',  width=14,            padx=4, pady=2)
+        self.entry210  = tk.Entry (self.frame22,                          width=50,                           relief='sunken', bg='white')
+        self.label211  = tk.Label (self.frame23, text='    ',             width=2,            padx=4, pady=2, relief='raised')
+        self.button210 = tk.Button(self.frame24, text="선택",             width=5,  height=2, padx=4, pady=4,
+                                                 command=lambda: self.btn_run_click('0'))
+        self.label220  = tk.Label (self.frame21, text='작업폴더',         width=14,           padx=4, pady=2)
+        self.entry220  = tk.Entry (self.frame22,                          width=50,                            relief='sunken', bg='white')
+        self.label221  = tk.Label (self.frame23, text='     ',            width=2,            padx=4, pady=2, relief='raised')
+        self.button220 = tk.Button(self.frame25, text="열기",             width=6,  height=2, padx=4, pady=4,
+                                                 command=lambda: self.btn_exe_excel_open(self.pdf_name+'.pdf'))
 
-        self.label310 = tk.Label (self.frame31, text='변환(PDF->XLS)', width=14,           padx=4, pady=2, justify='right')
-        self.entry310 = tk.Entry (self.frame32,                        width=50,                           relief='sunken')
-        self.label311 = tk.Label (self.frame33, text='      ',         width=2,            padx=4, pady=2, relief='raised')
-        self.button31 = tk.Button(self.frame34, text="변환(pdf2xls)",  width=14, height=2, padx=4, pady=0,
-                            command=lambda: self.btn_run_click('A'))
+        self.label310  = tk.Label (self.frame31, text='변환(PDF->XLS)',   width=14,           padx=4, pady=2, justify='right')
+        self.entry310  = tk.Entry (self.frame32,                          width=50,                           relief='sunken')
+        self.label311  = tk.Label (self.frame33, text='      ',           width=2,            padx=4, pady=2, relief='raised')
+        self.button310 = tk.Button(self.frame34, text="변환",             width=5,  height=2, padx=4, pady=4,
+                                                 command=lambda: self.btn_run_click('A'))
         self.label320  = tk.Label (self.frame31, text='자재청구서',       width=14,           padx=4, pady=2, justify='right')
-        self.entry320  = tk.Entry (self.frame32,                        width=50,                           relief='sunken', bg='white')
-        self.label321  = tk.Label (self.frame33, text='      ',         width=2,            padx=4, pady=2, relief='raised')
-        self.button32  = tk.Button(self.frame34, text="---",            width=14, height=2, padx=4, pady=0,
-                            command=lambda: self.btn_run_click('A'))
+        self.entry320  = tk.Entry (self.frame32,                          width=50,                           relief='sunken', bg='white')
+        self.label321  = tk.Label (self.frame33, text='      ',           width=2,            padx=4, pady=2, relief='raised')
+        self.button320 = tk.Button(self.frame35, text="열기",             width=6,  height=1, padx=4, pady=0,
+                                                 command=lambda: self.btn_exe_excel_open(self.conv1_name))
+        self.button321  = tk.Button(self.frame35, text="열기",           width=6, height=1, padx=4, pady=0,
+                                                 command=lambda: self.btn_exe_excel_open(self.xmast_name))
 
         self.label410  = tk.Label(self.frame41, text='반출요청서',        width=14,           padx=4, pady=2, justify='right')
         self.entry410  = tk.Entry(self.frame42,                         width=50,                           relief='sunken', bg='white')
@@ -96,20 +102,20 @@ class windows_tkinter:
         self.button410 = tk.Button(self.frame44, text="작성",            width=5, height=1,  padx=4, pady=0,
                             command=lambda: self.btn_run_click('B'))
         self.button411 = tk.Button(self.frame45, text="열기",            width=6, height=1,  padx=4, pady=0,
-                            command=lambda: self.btn_run_func_b_click())
+                            command=lambda: self.btn_exe_excel_open(self.xdoc_b_name))
 
         self.label420  = tk.Label(self.frame41, text='자재요청서',        width=14,           padx=4, pady=2, justify='right')
         self.entry420  = tk.Entry(self.frame42,                         width=50,                           relief='sunken', bg='white')
         self.label421 = tk.Label(self.frame43, text='      ',           width=2,            padx=4, pady=2, relief='raised')
-        self.button420 = tk.Button(self.frame44, text="작성",            width=5, height=1,  padx=4, pady=2,
+        self.button420 = tk.Button(self.frame44, text="작성",            width=5, height=1,  padx=4, pady=0,
                             command=lambda: self.btn_run_click('C'))
-        self.button421 = tk.Button(self.frame45, text="열기",            width=6, height=1,  padx=4, pady=2,
-                            command=lambda: self.btn_run_func_c_click())
+        self.button421 = tk.Button(self.frame45, text="열기",            width=6, height=1,  padx=4, pady=0,
+                            command=lambda: self.btn_exe_excel_open(self.xdoc_c_name))
 
-        self.frame10.pack(expand=True)
-        self.frame20.pack(expand=True)
-        self.frame30.pack(expand=True)
-        self.frame40.pack(expand=True)
+        self.frame10.pack(expand=True, padx=6, pady=6)
+        self.frame20.pack(expand=True, padx=6, pady=6)
+        self.frame30.pack(expand=True, padx=6, pady=6)
+        self.frame40.pack(expand=True, padx=6, pady=6)
         #self.frame90.pack(expand=True)
 
         self.frame11.pack(side='left')
@@ -119,11 +125,13 @@ class windows_tkinter:
         self.frame22.pack(side='left')
         self.frame23.pack(side='left')
         self.frame24.pack(side='left')
+        self.frame25.pack(side='left')
 
         self.frame31.pack(side='left')
         self.frame32.pack(side='left')
         self.frame33.pack(side='left')
         self.frame34.pack(side='left')
+        self.frame35.pack(side='left')
 
         self.frame41.pack(side='left')
         self.frame42.pack(side='left')
@@ -133,28 +141,30 @@ class windows_tkinter:
 
         self.label110.pack(side='left')
         self.label111.pack(side='left')
+        self.button13.pack(side='right')
         self.button11.pack(side='right')
         self.button12.pack(side='right')
-        #self.button12.pack(side='right')
 
         self.label210.pack(anchor='w')
         self.entry210.pack(ipadx=2, ipady=2)
         self.label211.pack()
-        self.button21.pack()
+        self.button210.pack()
 
         self.label220.pack(anchor='w')
         self.entry220.pack(ipadx=2, ipady=2)
         self.label221.pack()
-        #self.button22.pack(side='left')
+        self.button220.pack(side='left')
 
         self.label310.pack(anchor='w')
         self.entry310.pack(ipadx=2, ipady=2)
         self.label311.pack()
-        self.button31.pack()
+        self.button310.pack()
 
         self.label320.pack(anchor='w')
         self.entry320.pack(ipadx=2, ipady=2)
         self.label321.pack()
+        self.button320.pack()
+        self.button321.pack()
 
         self.label410.pack(anchor='w')
         self.entry410.pack(ipadx=2, ipady=2)
@@ -209,7 +219,7 @@ class windows_tkinter:
         while my_thread.is_alive():
             time.sleep(0.01)
         '''
-        self.zs_check_file_click()
+        self.zs_check_file_click(self.dir_curr)
 
     def btn_get_file_pdf_click(self):
 
@@ -242,8 +252,8 @@ class windows_tkinter:
         dircurr = self.dir_curr
 
         # 파일을 형식 변경 ( PDF --> xlsx )
-        input_pdf  = self.dir_curr + '\\' + self.pdf_name + '.pdf'
-        output_xls = self.dir_curr + '\\' + self.conv1_name
+        input_pdf   = self.dir_curr + '\\' + self.pdf_name + '.pdf'
+        output_xls  = self.dir_curr + '\\' + self.conv1_name
         output_xlsx = self.dir_curr + '\\' + self.xmast_name
 
         func_a.zs_print_message(2, 'converting PDF -> xls')
@@ -257,7 +267,7 @@ class windows_tkinter:
 
         dircurr = self.dir_curr
 
-        input_xlsx = self.dir_curr + '\\' + self.xmast_name
+        input_xlsx  = self.dir_curr + '\\' + self.xmast_name
         output_xlsx = self.dir_curr + '\\' + self.xdoc_b_name
 
         # 파일 생성 (자재요청서)
@@ -279,8 +289,7 @@ class windows_tkinter:
         result = func_c.zf_create_mr(input_xlsx, output_xlsx)
 
 
-    def zs_check_file_click(self):
-        dir_curr = os.getcwd()
+    def zs_check_file_click(self, dir_curr):
 
         pdfnam = dir_curr + '\\' + self.pdf_name + '.pdf'
         xcnv1  = dir_curr + '\\' + self.conv1_name
@@ -316,6 +325,15 @@ class windows_tkinter:
         self.label421.update
 
 
+    def btn_exe_excel_open(self, filename):
+        filepath = self.dir_curr + '\\' + filename
+        file_name, file_ext = os.path.splitext(filename)
+
+        file_ext = file_ext.replace('.', '')
+        if file_ext.upper() in ['XLSX', 'XLS']: os.system(f'start excel "{filepath}"')
+        if file_ext.upper() in ['PDF']:         os.system(f'start msedge "{filepath}"')
+
+
     def zf_close_wb_click(self):
 
         list_wb = list()
@@ -343,6 +361,10 @@ class windows_tkinter:
         com_app.Quit()
 
 
+    def zs_quit_click(self):
+        self.window.destroy()
+
+
     def zf_load_file_pdf(self):
         filename = filedialog.askopenfilename(initialdir="./", title="Select file",
                                               filetypes=(("PDF files", "*.pdf"),
@@ -362,6 +384,7 @@ class windows_tkinter:
             print('----------------------------------------------------------')
 
 
+
     def __main__(self):
 
         func_c.zs_print_message(0, f' Welcome !!!')
@@ -372,7 +395,15 @@ class windows_tkinter:
 
 if __name__ == '__main__':
     window = tk.Tk()
+
+    dir_curr = os.getcwd()
     windows_tkinter(window)
+    #window.iconbitmap(f'{dir_curr}\\_image\\KOIN.ico')
+    #window.iconbitmap('KOIN.ico')
+
+    ico = tk.PhotoImage(file=f'{dir_curr}\\_image\\KOIN.png')
+    window.iconphoto(False, ico)
+
     window.mainloop()
 
 
