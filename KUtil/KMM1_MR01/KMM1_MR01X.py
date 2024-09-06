@@ -12,11 +12,13 @@ import KMM1_MR01A as func_a
 import KMM1_MR01B as func_b
 import KMM1_MR01C as func_c
 
+# ==============================================================================================================
 class windows_tkinter:
     def __init__(self, window):
         self.window = window
         self.window.title("자재 요청서 생성")
         #self.window.geometry("670x300+100+100")
+        #==============================================================================================================
         self.window.resizable(False, False)
 
         self.dir_base = os.getcwd().replace("/", "\\")
@@ -31,11 +33,8 @@ class windows_tkinter:
         self.tmpl_b_name = '_tmpl_반출요청서.xlsx'
         self.tmpl_c_name = '_tmpl_자재요청서.xlsx'
 
-        self.CheckVar21 = False
-        self.CheckVar31 = True
-        self.CheckVar41 = True
-        self.CheckVar51 = True
 
+        #==============================================================================================================
         self.frame10 = tk.Frame(self.window, width=750, height=60,  padx=4, pady=6, relief='raised', bd=2, bg='black')
         self.frame20 = tk.Frame(self.window, width=750, height=100, padx=4, pady=4, relief='groove', bd=2)
         self.frame30 = tk.Frame(self.window, width=750, height=100, padx=4, pady=4, relief='groove', bd=2)
@@ -179,6 +178,7 @@ class windows_tkinter:
         self.button421.pack()
 
         self.__main__()
+
 
     def btn_run_click(self, selfunc):
         bgcolor = 'yellow'
@@ -334,6 +334,8 @@ class windows_tkinter:
         if file_ext.upper() in ['PDF']:         os.system(f'start msedge "{filepath}"')
 
 
+
+
     def zf_close_wb_click(self):
 
         list_wb = list()
@@ -383,31 +385,33 @@ class windows_tkinter:
         if a_sep == 9:
             print('----------------------------------------------------------')
 
+    #===================================================================================================================
 
+    def onExit(self):
+        self.window.destroy()
 
+    #===================================================================================================================
     def __main__(self):
 
         func_c.zs_print_message(0, f' Welcome !!!')
         func_c.zs_print_message(9, f' ')
-        #for i in tqdm(range(100), mininterval=1):
-        #    print(i, end='')
 
 
 if __name__ == '__main__':
     window = tk.Tk()
-
-    dir_curr = os.getcwd()
     windows_tkinter(window)
-    #window.iconbitmap(f'{dir_curr}\\_image\\KOIN.ico')
-    #window.iconbitmap('KOIN.ico')
+
+    #------------------------------------------------------------------------------------------------------------------
+    dir_curr = os.getcwd()
 
     ico = tk.PhotoImage(file=f'{dir_curr}\\_image\\KOIN.png')
     window.iconphoto(False, ico)
+    # window.iconbitmap(f'{dir_curr}\\_image\\KOIN.ico')
+    # window.iconbitmap('KOIN.ico')
 
     window.mainloop()
 
-
-    """
+    '''
     my_thread = threading.Thread(target =zf_pdf_2_xls, args=(input_pdf, output_xls,))
     my_thread.start()
 
@@ -416,3 +420,5 @@ if __name__ == '__main__':
         time.sleep(0.001)
     print('')
     """
+
+
