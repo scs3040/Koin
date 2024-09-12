@@ -8,7 +8,7 @@ import threading
 import time
 
 
-import KMM1_MR01A as func_a
+:
 import KMM1_MR01B as func_b
 import KMM1_MR01C as func_c
 
