@@ -6,6 +6,8 @@ import win32com.client as win32
 from datetime import datetime, timedelta
 
 import CMM1_1000A as f1000_a
+import test_listbox as CListbox
+
 
 class MenuBar(tk.Menu):
     def __init__(self, parent, wwin):
@@ -59,6 +61,14 @@ class windows_tkinter:
         self.frame10.pack(expand=True, padx=6, pady=6)
         self.frame20.pack(expand=True, padx=6, pady=6)
 
+        mc = CListbox.Multicolumn_Listbox(self.frame20, ["column one", "column two", "column three"], stripped_rows=("white", "#f2f2f2"),
+                             command=self.on_select, cell_anchor="center")
+        mc.interior.pack()
+
+    def on_select(data):
+        print("called command when row is selected")
+        print(data)
+        print("\n")
 
 if __name__ == '__main__':
     window = tk.Tk()
