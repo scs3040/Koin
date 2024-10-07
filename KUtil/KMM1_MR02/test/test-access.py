@@ -64,18 +64,31 @@ class AccessDb:
         """DSN syntax - http://support.microsoft.com/kb/193332 and 
         http://www.codeproject.com/database/connectionstrings.asp?
         df=100&forumid=3917&exp=0&select=1598401"""
-        DSN = """PROVIDER=Microsoft.Jet.OLEDB.4.0;DATA SOURCE=%s;
-            USER ID=%s;PASSWORD=%s;Jet OLEDB:System Database=%s;""" % \
-              (data_source, user, pwd, mdw)
-        # print DSN
+       # DSN = """PROVIDER=Microsoft.Jet.OLEDB.4.0;DATA SOURCE=%s;
+       #     USER ID=%s;PASSWORD=%s;Jet OLEDB:System Database=%s;""" % \
+       #       (data_source, user, pwd, mdw)
+
+        #conn = pyodbc.connect(
+        #    r'Driver={Microsoft Access Driver (*.mdb, *.accdb)};DBQ=C:\Users\Ron\Desktop\Test\test_database.accdb;')
+
+        db = r"C:\zDsk\github\Koin\KUtil\KMM1_MR02\_Data\koinWDB1.acc.db"
+        DSN = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + db
+
+
+        print( DSN)
+
         try:
+            print(DSN)
             self.connAccess.Open(DSN)
         except Exception:
-            raise Exception, "Unable to open MS Access database " + \
-                             "using DSN: %s" % DSN
+            print("aa")
+            #raise Exception, "Unable to open MS Access database " + \
+            #                  "using DSN: %s" % DSN
+            #raise Exception , "Unable to open MS Access database using DSN: %s" % DSN
 
     def getConn(self):
         "Get connection"
+        print("Get connection")
         return self.connAccess
 
     def closeConn(self):
@@ -95,6 +108,7 @@ class AccessDb:
         for tab in alltables:
             if tab.Type == 'TABLE':
                 tab_names.append(tab.Name)
+                print(tab.name)
         return tab_names
 
     def getTables(self):
@@ -103,6 +117,7 @@ class AccessDb:
         tabs = {}
         for tab_name in tab_names:
             tabs[tab_name] = Table(self.connAccess, tab_name)
+            print(tab_name)
         return tabs
 
     def runQuery(self, SQL_statement):
@@ -124,10 +139,10 @@ class AccessDb:
         index_coll = cat.Tables(tab_name).Indexes
         try:
             index_coll.Delete(idx_name)
-        except Exception, e:
-            raise Exception, "Unable to delete index - if table is " + \
+        except Exception as e:
+            raise Exception( "Unable to delete index - if table is " + \
                              "locked, make sure you release (close) it first.  " + \
-                             "Orig error: " + str(e)
+                             "Orig error: " + str(e))
         cat = None
 
     def addRelationship(self, tab_foreign_name, tab_foreign_key,
@@ -140,8 +155,8 @@ class AccessDb:
         tabs = [tab_foreign_name, tab_primary_name]
         for tab in tabs:
             if tab not in self.getTableNames():
-                raise Exception, "Table \"%s\" is not in this database" \
-                                 % tab
+                raise Exception( "Table \"%s\" is not in this database" \
+                                 % tab)
         cat = win32com.client.Dispatch(r'ADOX.Catalog')
         cat.ActiveConnection = self.connAccess
         tbl_foreign = cat.Tables(tab_foreign_name)
@@ -157,9 +172,9 @@ class AccessDb:
             if cascade_update:
                 new_key.UpdateRule = AD_RI_CASCADE
             tbl_foreign.Keys.Append(new_key)
-        except Exception, e:
-            raise Exception, "Unable to add relationship '%s'. " % \
-                             rel_name + "Orig error: %s" % str(e)
+        except Exception as e:
+            raise Exception( "Unable to add relationship '%s'. " % \
+                             rel_name + "Orig error: %s" % str(e) )
         finally:
             tbl_foreign = None
             cat = None
@@ -171,15 +186,15 @@ class AccessDb:
         http://msdn2.microsoft.com/en-us/library/aa164927(office.10).aspx
         """
         if tab_foreign_name not in self.getTableNames():
-            raise Exception, "Table \"%s\" is not in this database" % \
-                             tab_foreign_name
+            raise Exception( "Table \"%s\" is not in this database" % \
+                             tab_foreign_name)
         cat = win32com.client.Dispatch(r'ADOX.Catalog')
         cat.ActiveConnection = self.connAccess
         tbl_foreign = cat.Tables(tab_foreign_name)
         tbl_keys = [x.Name for x in tbl_foreign.Keys]
         if rel_name not in tbl_keys:
-            raise Exception, "\"%s\" is not in " % rel_name + \
-                             "relationships for table \"%s\"" % tab_foreign_name
+            raise Exception("\"%s\" is not in " % rel_name + \
+                             "relationships for table \"%s\"" % tab_foreign_name)
         tbl_foreign.Keys.Delete(rel_name)
         tbl_foreign = None
         cat = None
@@ -192,12 +207,13 @@ class Table():
         self.connAccess = connAccess
         self.rs = win32com.client.Dispatch(r'ADODB.Recordset')
         try:
+            print(tab_name)
             self.rs.Open("[%s]" % tab_name, self.connAccess, AD_OPEN_KEYSET,
                          AD_LOCK_OPTIMISTIC)
-        except Exception, e:
-            raise Exception, "Problem opening " + \
+        except Exception as e:
+            raise Exception( "Problem opening " + \
                              "table \"%s\" - " % tab_name + \
-                             "orig error: %s" % str(e)
+                             "orig error: %s" % str(e) )
         self.name = tab_name
         self.indexes = self.__getIndexes()
 
