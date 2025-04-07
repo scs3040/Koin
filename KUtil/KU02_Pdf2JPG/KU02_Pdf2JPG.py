@@ -123,7 +123,9 @@ class PDFToJPGConverter:
         self.progress_bar.update()
 
     def convert_directory_pdfs_to_jpg(self, input_dir, output_dir):
+        print(f'21 : {output_dir}')
         if not os.path.exists(output_dir):
+            print(f'22 : {output_dir}')
             os.makedirs(output_dir)
 
         pdf_files = [f for f in os.listdir(input_dir) if f.lower().endswith('.pdf')]
