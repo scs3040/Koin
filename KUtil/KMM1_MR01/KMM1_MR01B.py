@@ -80,7 +80,7 @@ def zf_create_carryout(input_xlsx, output_xlsx):
 
     wss = wbs.Sheets(1)
     srows = wss.Range('A:A').Find('품번', LookAt=1).Row + 1
-    srowf = zf_get_last_row_from_column(wss, 'A')
+    srowf = zf_get_last_row_from_column(wss, 'A') - 3
 
     wst = wbt.Sheets(1)
     trows = wst.Range("A:B").Find('NO', LookAt=1).Row
@@ -88,6 +88,7 @@ def zf_create_carryout(input_xlsx, output_xlsx):
 
     trow = trows
     for srow in range(srows, srowf + 1):
+        print(wss.Cells(srow, 7).Value)
         if int(wss.Cells(srow, 7).Value) == 0 :
             continue
 

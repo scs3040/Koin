@@ -69,7 +69,7 @@ class windows_tkinter:
         mc.insert_row([0,'2024-10-10','aa',3,4,5,6,7,8,9,0])
         mc.insert_row([0,'2024-10-10','aa',3,4,5,6,7,8,9,0])
 
-    def on_select(data):
+    def on_select(self, data):
         print("called command when row is selected")
         print(data)
         print("\n")

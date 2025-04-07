@@ -101,7 +101,9 @@ def zf_create_mr(input_xlsx, output_xlsx):
     trowf = zf_get_last_row_from_column(wst, 'A')
 
     trow = trows
-    for srow in range(srows, srowf + 1):
+    for srow in range(srows, srowf -2):
+        if wss.Cells(srow, 7).Value == None :
+            break
         if int(wss.Cells(srow, 7).Value) == 0 :
             continue
 

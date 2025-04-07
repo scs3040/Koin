@@ -9,9 +9,9 @@ db = r"C:\zDsk\github\Koin\KUtil\KMM1_MR02\_Data\koinWDB1.accdb;"
 #DSN = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + db
 #mdb = conn.Open(DSN)
 
-conn_str = (r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)};'
-            r"C:\zDsk\github\Koin\KUtil\KMM1_MR02\_Data\koinWDB1.accdb;")
-conn = pyodbc.connect(conn_str, autocommit=True)
+conn_str = (r'DRIVER={Microsoft Access Driver (*.mdb, *.accdb)}; "F:\github\Koin\KUtil\KMM1_MR02\_Data\koinWDB1.accdb;')
+            #r"C:\zDsk\github\Koin\KUtil\KMM1_MR02\_Data\koinWDB1.accdb;")
+conn = pyodbc.connect(conn_str) #, autocommit=True)
 
 tab_names = mdb.getTableNames()
 tabs = {}
