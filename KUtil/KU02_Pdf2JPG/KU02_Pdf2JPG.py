@@ -17,7 +17,7 @@ class PDFToJPGConverter:
         self.font10 = tk.font.Font(family="Arial unicode MS", size=10);
         self.fields = '폴드 INP', '폴드 OUT'
 
-        self.ent = self.makeform(root, self.fields)
+        self.ents = self.makeform(root, self.fields)
 
         root.bind('<Return>', (lambda event, e=self.ents: self.fetch(e)))
         row = tk.Frame(root)
